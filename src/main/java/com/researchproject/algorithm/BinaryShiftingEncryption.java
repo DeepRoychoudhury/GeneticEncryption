@@ -8,10 +8,12 @@ class TreeNode{
 	TreeNode left;
 	TreeNode right;
 	
+	//constructor for TreeNode without arguments
 	public TreeNode() {	}
 	TreeNode(int val){
 		this.val = val;
 	}
+	//constructor for TreeNode with arguments
 	public TreeNode(int val, TreeNode left, TreeNode right) {
 		super();
 		this.val = val;
@@ -117,7 +119,7 @@ public class BinaryShiftingEncryption {
 				return ordered;
 		}
 		
-		//Inserting Numbers to TreeNode.
+		//Inserting Numbers to TreeNode. Time-Complexity:O(n)
 		private TreeNode insertToTree(List<Integer> positionedData) {
 			TreeNode node = new TreeNode();			
 			for(int i=0;i<positionedData.size();i++) {

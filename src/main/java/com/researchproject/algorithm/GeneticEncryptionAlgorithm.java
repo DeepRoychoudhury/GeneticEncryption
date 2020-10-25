@@ -3,7 +3,7 @@ package com.researchproject.algorithm;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EncryptionAlgorithm {
+public class GeneticEncryptionAlgorithm {
 
 	//Visible encryption method
 	public String encrypt(String data) {

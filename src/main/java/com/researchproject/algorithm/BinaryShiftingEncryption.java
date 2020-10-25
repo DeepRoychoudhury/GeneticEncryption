@@ -1,11 +1,14 @@
 package com.researchproject.algorithm;
 
+import java.util.LinkedList;
 import java.util.List;
 
 class TreeNode{
 	int val;
 	TreeNode left;
 	TreeNode right;
+	
+	public TreeNode() {	}
 	TreeNode(int val){
 		this.val = val;
 	}
@@ -16,10 +19,33 @@ class TreeNode{
 		this.right = right;
 	}
 	
+	//Create node if node is null
+	private TreeNode createTreeNode(int val) {
+		TreeNode node = new TreeNode();
+		node.val=val;
+		node.left=null;
+		node.right=null;
+		return node;
+	} 
+	
+	//Inserting as a Binary Search Tree
+	public TreeNode insert(TreeNode node, int val){
+		if(node==null){
+			return createTreeNode(val);
+		}
+		if(val<node.val){
+			node.left=insert(node.left,val);
+		}
+		else if(val>node.val){
+			node.right=insert(node.right,val);
+		}
+		return node;
+	}
 }
 
 public class BinaryShiftingEncryption {	
 	
+		private List<Integer> ordered = new LinkedList<Integer>();
 		//constant values of patterns (enumeration)
 		private enum Pattern{ 
 			inorder,preorder,postorder;
@@ -49,32 +75,55 @@ public class BinaryShiftingEncryption {
 		}
 		
 		//Shuffling the new numbers w.r.t. number of elements
-		private List<Integer> shuffle(Pattern patterntype, List<Integer> numbers){
+		private void shuffle(Pattern patterntype, TreeNode node){
 			if(patterntype == Pattern.inorder) {
-				inOrderSort(numbers);
+				inOrderArrange(node);
 			}
 			else if(patterntype == Pattern.preorder){
-				preOrderSort(numbers);
+				preOrderArrange(node);
 			}
 			else {
-				postOrderSort(numbers);
-			}
-			return numbers;			
+				postOrderArrange(node);
+			}			
 		}
 		
 		//Arrangement in Pre Order Fashion (Data Structure)
-		private List<Integer> preOrderSort(List<Integer> numbers){
-			return numbers;			
+		private List<Integer> preOrderArrange(TreeNode node){			
+			if(node != null) {
+			ordered.add(node.val);
+			preOrderArrange(node.left);
+			preOrderArrange(node.right);
+			}
+			return ordered;			
 		}
 		
 		//Arrangement in Post Order Fashion (Data Structure)
-		private List<Integer> postOrderSort(List<Integer> numbers){
-			return numbers;
+		private List<Integer> postOrderArrange(TreeNode node){
+			if(node != null) {
+				preOrderArrange(node.left);
+				preOrderArrange(node.right);
+				ordered.add(node.val);
+				}
+				return ordered;	
 		}
 		
 		//Arrangement in In order Fashion (Data Structure)
-		private List<Integer> inOrderSort(List<Integer> numbers){
-			return numbers;
+		private List<Integer> inOrderArrange(TreeNode node){
+			if(node != null) {
+				preOrderArrange(node.left);
+				ordered.add(node.val);
+				preOrderArrange(node.right);
+				}
+				return ordered;
+		}
+		
+		//Inserting Numbers to TreeNode.
+		private TreeNode insertToTree(List<Integer> positionedData) {
+			TreeNode node = new TreeNode();			
+			for(int i=0;i<positionedData.size();i++) {
+			node=node.insert(node, positionedData.get(i));
+			}
+			return node;
 		}
 		
 }

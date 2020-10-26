@@ -48,6 +48,7 @@ class TreeNode{
 
 public class BinaryShiftingEncryption {	
 	
+		private int nodeCount = 0;
 		private List<Integer> ordered = new LinkedList<Integer>();
 		
 		//constant values of patterns (enumeration)
@@ -126,8 +127,13 @@ public class BinaryShiftingEncryption {
 			TreeNode node = new TreeNode();			
 			for(int i=0;i<positionedData.size();i++) {
 			node=node.insert(node, positionedData.get(i));
+			nodeCount++;
 			}
 			return node;
 		}
 		
+		//Identifies the size of Node
+		public int size() {
+			return nodeCount;
+		}
 }

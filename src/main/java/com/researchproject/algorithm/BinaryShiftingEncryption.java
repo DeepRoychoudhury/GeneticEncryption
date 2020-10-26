@@ -3,6 +3,7 @@ package com.researchproject.algorithm;
 import java.util.LinkedList;
 import java.util.List;
 
+//Tree Class to create binary tree
 class TreeNode{
 	int val;
 	TreeNode left;
@@ -47,7 +48,9 @@ class TreeNode{
 
 public class BinaryShiftingEncryption {	
 	
+		private int nodeCount = 0;
 		private List<Integer> ordered = new LinkedList<Integer>();
+		
 		//constant values of patterns (enumeration)
 		private enum Pattern{ 
 			inorder,preorder,postorder;
@@ -102,8 +105,8 @@ public class BinaryShiftingEncryption {
 		//Arrangement in Post Order Fashion (Data Structure)
 		private List<Integer> postOrderArrange(TreeNode node){
 			if(node != null) {
-				preOrderArrange(node.left);
-				preOrderArrange(node.right);
+				postOrderArrange(node.left);
+				postOrderArrange(node.right);
 				ordered.add(node.val);
 				}
 				return ordered;	
@@ -112,9 +115,9 @@ public class BinaryShiftingEncryption {
 		//Arrangement in In order Fashion (Data Structure)
 		private List<Integer> inOrderArrange(TreeNode node){
 			if(node != null) {
-				preOrderArrange(node.left);
+				inOrderArrange(node.left);
 				ordered.add(node.val);
-				preOrderArrange(node.right);
+				inOrderArrange(node.right);
 				}
 				return ordered;
 		}
@@ -124,8 +127,13 @@ public class BinaryShiftingEncryption {
 			TreeNode node = new TreeNode();			
 			for(int i=0;i<positionedData.size();i++) {
 			node=node.insert(node, positionedData.get(i));
+			nodeCount++;
 			}
 			return node;
 		}
 		
+		//Identifies the size of Node
+		public int size() {
+			return nodeCount;
+		}
 }

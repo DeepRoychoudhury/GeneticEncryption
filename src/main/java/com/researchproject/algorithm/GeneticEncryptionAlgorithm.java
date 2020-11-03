@@ -5,21 +5,28 @@ import java.util.List;
 
 public class GeneticEncryptionAlgorithm {
 
+	List<String> bitConverted = new ArrayList<String>();
+	
 	//Visible encryption method
-	public String encrypt(String data) {
+	public String geneticEncryption(List<Integer> treeTraversedData) {
+		PerformBitOperation(treeTraversedData);
+		System.out.println(bitConverted.toString());
 		return null;
 	}
 	
+	//Performing bit manipulation of each integer
+	private List<String> PerformBitOperation(List<Integer> treeTraversedData){
+		for(int i=0;i<treeTraversedData.size();i++) {
+			bitConverted.add(BitManipulation(treeTraversedData.get(i)));
+		}
+		return bitConverted;
+	}
+	
 	//Bit calculation of integer n, Time Complexity: O(1)
-	private int BitManipulation(int n) {		
-		return Integer.bitCount(n);		
+	private String BitManipulation(int n) {		
+		return Integer.toBinaryString(n);		
 	}
-	
-	//ASCII conversion of character to integer, Time Complexity: O(1)
-	private int AsciiValue(char data) {
-		return (int) data;
-	}
-	
+		
 	//Generate pseudo random number using multiplicative congruential generator(MCG) 
 	//or Lehmer RNG {X(i+1)=(X(i)*a) modulo m}, Time Complexity : O(1)
 	private int crossovernumber(List<Integer> values) {

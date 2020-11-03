@@ -1,7 +1,11 @@
 package com.researchproject.algorithm;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Service;
 
 //Tree Class to create binary tree
 class TreeNode{
@@ -46,25 +50,93 @@ class TreeNode{
 	}
 }
 
+
 public class BinaryShiftingEncryption {	
 	
 		private int nodeCount = 0;
+		private List<String> splittedData = new ArrayList<String>();
+		private List<Integer> ManipulatedAscii = new ArrayList<Integer>();
+		private List<Integer> positionedAscii = new ArrayList<Integer>();
 		private List<Integer> ordered = new LinkedList<Integer>();
+		
+		//External method for call 
+		//Template Design Pattern
+		public List<Integer> treeList(String data){
+			splittingData(data);
+			ComputingASCII(splittedData);
+			positionTrainer(ManipulatedAscii);
+			convertedTree(positionedAscii);
+			System.out.println(positionedAscii.toString());
+			System.out.println(ordered.toString());
+			return ordered;
+		}
 		
 		//constant values of patterns (enumeration)
 		private enum Pattern{ 
 			inorder,preorder,postorder;
 		}	 
 		
+		//Split the Data in List<String> for manipulation
+		private List<String> splittingData(String data){
+		for(String val : data.split(" ")) {
+			splittedData.add(val);
+		}
+		return splittedData;
+		}
+		
+		
+		//Computing the ASCII value of each Data or String char
+		private List<Integer> ComputingASCII(List<String> splittedData){
+			for(int i=0;i<splittedData.size();i++) {
+				for(int j=0;j<splittedData.get(i).length();j++) {
+					ManipulatedAscii.add(asciiValue(splittedData.get(i).charAt(j)));
+				}	
+				ManipulatedAscii.add(null);
+			}
+			return ManipulatedAscii;
+		}
+		
 		//ASCII conversion of character to integer, Time Complexity: O(1)
 		private int asciiValue(char data) {
 			return (int) data;
+		}
+		
+		//Position Trainer to identify the position of number and 
+		private List<Integer> positionTrainer(List<Integer> ManipulatedAscii){
+			int pos = 0;
+			for(int i=0;i<ManipulatedAscii.size();i++) {				
+				if(ManipulatedAscii.get(i) != null) {
+					pos++;
+					positionedAscii.add(addingPosition(pos,ManipulatedAscii.get(i)));
+				}
+				else {
+					positionedAscii.add(null);
+					pos = 0; //Making position '0' whenever null encounters
+				}
+			}
+			return positionedAscii;
 		}
 		
 		//Adding 100th element with position
 		private int addingPosition(int position, int number) {
 			number=(number*100)+position;
 			return number;
+		}
+		
+		//Fetching Pattern and converting individual string to BST tree node
+		//and output the result as list in preorder, postorder or inorder
+		private List<Integer> convertedTree(List<Integer> positionedAscii) {
+			List<Integer> numbers = new ArrayList<Integer>();
+			for(int i=0;i<positionedAscii.size();i++) {
+				if(positionedAscii.get(i) != null) {
+					numbers.add(positionedAscii.get(i));
+				}
+				else {
+					shuffle(getPatternType(numbers),insertToTree(numbers));	
+					numbers.clear();
+				}				
+			}
+			return ordered;
 		}
 		
 		//Get Pattern type for shuffling
@@ -124,8 +196,8 @@ public class BinaryShiftingEncryption {
 		
 		//Inserting Numbers to TreeNode. Time-Complexity:O(n)
 		private TreeNode insertToTree(List<Integer> positionedData) {
-			TreeNode node = new TreeNode();			
-			for(int i=0;i<positionedData.size();i++) {
+			TreeNode node = new TreeNode(positionedData.get(0));			
+			for(int i=1;i<positionedData.size();i++) {
 			node=node.insert(node, positionedData.get(i));
 			nodeCount++;
 			}
@@ -133,7 +205,7 @@ public class BinaryShiftingEncryption {
 		}
 		
 		//Identifies the size of Node
-		public int size() {
+		private int size() {
 			return nodeCount;
 		}
 }

@@ -63,11 +63,13 @@ public class BinaryShiftingEncryption {
 		//Template Design Pattern
 		public List<Integer> treeList(String data){
 			splittingData(data);
+			System.out.println("Splitted Data : "+splittedData.toString());
 			ComputingASCII(splittedData);
+			System.out.println("ASCII Computation : "+ManipulatedAscii.toString());
 			positionTrainer(ManipulatedAscii);
-			convertedTree(positionedAscii);
-			System.out.println(positionedAscii.toString());
-			System.out.println(ordered.toString());
+			System.out.println("ASCII postioned : "+positionedAscii.toString());
+			convertedTree(positionedAscii);			
+			System.out.println("Tree Traversed output : "+ordered.toString());
 			return ordered;
 		}
 		
@@ -133,6 +135,7 @@ public class BinaryShiftingEncryption {
 				}
 				else {
 					shuffle(getPatternType(numbers),insertToTree(numbers));	
+					ordered.add(null);
 					numbers.clear();
 				}				
 			}

@@ -20,7 +20,7 @@ public class EncryptionController {
 	
 	@PostMapping(path="/data")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Encrypt fetchText(@RequestBody Encrypt encrypt) {
+	public Encrypt fetchText(@RequestBody Encrypt encrypt) throws Exception {
 		return encryptData.encryptTheData(encrypt);
 	}
 }

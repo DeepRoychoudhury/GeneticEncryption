@@ -17,18 +17,18 @@ public class GeneticEncryptionAlgorithm {
 	//Template Design Pattern
 	public String geneticEncryption(List<Integer> treeTraversedData, int dataOwnerId, int accessibilityId) {
 		replaceNull(treeTraversedData);
-		System.out.println("Replace Null : "+treeReplacedNull.toString());
+		//System.out.println("Replace Null : "+treeReplacedNull.toString());
 		PerformBitOperation(treeReplacedNull);
-		System.out.println("Binary conversion of ASCII : "+bitConverted.toString());
+		//System.out.println("Binary conversion of ASCII : "+bitConverted.toString());
 		geneticEncrypted = crossandmut(treeTraversedData, bitConverted, dataOwnerId, accessibilityId); 
-		System.out.println("Encrypted output : "+geneticEncrypted);
+		//System.out.println("Encrypted output : "+geneticEncrypted);
 		return geneticEncrypted;
 	}
 	
 	//replace null by 0 method
 	private List<Integer> replaceNull(List<Integer> treeTraversedData){
 		String treeTraversedString = treeTraversedData.toString().replace("[","").replace("]", "").replaceAll(",", "").replaceAll("null", "00000000000000");
-		System.out.println(treeTraversedString);
+		//System.out.println(treeTraversedString);
 		String[] treeTraversedArray = treeTraversedString.split(" ");
 		for(int i=0;i<treeTraversedArray.length;i++) {
 				treeReplacedNull.add(Integer.parseInt(treeTraversedArray[i]));
@@ -64,8 +64,10 @@ public class GeneticEncryptionAlgorithm {
 		crossValue.add(treeTraversedData.size());
 		
 		int cross = crossovernumber(crossValue);
-		
-		while(i<(bitConverted.size()/2)) {	
+
+		System.out.println("Cross Number is : "+cross);
+		int k=0;
+		while(k<(bitConverted.size()/2)) {	
 			List<String> sizeEqualizedStrings = new ArrayList<String>();
 			List<Integer> firstbinary = new ArrayList<Integer>();
 			List<Integer> secondbinary = new ArrayList<Integer>();
@@ -92,7 +94,7 @@ public class GeneticEncryptionAlgorithm {
 			
 			geneticString.add(mutation(cross, firstbinary, secondbinary).toString());
 			i+=2;
-			
+			k++;
 		}
 		System.out.println("Genetic Mutation output : "+geneticString.toString());
 		return geneticString.toString().replace("[", "").replace("]", "").replace(",", "");
@@ -158,8 +160,8 @@ public class GeneticEncryptionAlgorithm {
 		}	
 		
 		//Adding the crossover at the end of binary number
-		firstbinary.add(cross);
-		secondbinary.add(cross);
+		//firstbinary.add(cross);
+		//secondbinary.add(cross);
 		
 		mutatedValue.add(firstbinary);
 		mutatedValue.add(secondbinary);

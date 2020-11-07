@@ -24,9 +24,9 @@ public class EncryptionService {
 	public Encrypt encryptTheData(Encrypt encrypt) throws Exception {
 		
 		List<Integer> treeTraversed = bse.treeList(encrypt.getData());
-		String geneticEncryption = gea.geneticEncryption(treeTraversed, encrypt.getId(), 2); // change the accessibility Id
+		String geneticEncryption = gea.geneticEncryption(treeTraversed, encrypt.getUser_id(), 2); // change the accessibility Id
 		String AESEncrypted = aes.encrypt(geneticEncryption,"DataConsumer","DataOwner");
-		System.out.println(AESEncrypted);
+		//System.out.println(AESEncrypted);
 		outputEncryptedFile(AESEncrypted);
 		//String AESDecryption = aesd.decrypt(AESEncrypted,"DataConsumer","DataOwner");
 		//System.out.println(AESDecryption);

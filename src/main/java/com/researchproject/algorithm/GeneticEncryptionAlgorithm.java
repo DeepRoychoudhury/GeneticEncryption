@@ -4,10 +4,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.researchproject.model.Encrypt;
 import com.researchproject.repository.EncryptionRepository;
 
 public class GeneticEncryptionAlgorithm {
 
+	@Autowired
+	Encrypt encrypt;
+	
 	EncryptionRepository usersrepo = new EncryptionRepository();
 	
 	List<Integer> treeReplacedNull = new ArrayList<Integer>();
@@ -20,6 +26,7 @@ public class GeneticEncryptionAlgorithm {
 	public String geneticEncryption(List<Integer> treeTraversedData, String dataOwner_username, String group_name) throws ClassNotFoundException, SQLException{
 		int dataOwnerId = usersrepo.fetchDataOwnerId(dataOwner_username);
 		int accessibilityId = usersrepo.fetchGroupId(group_name);
+				
 		replaceNull(treeTraversedData);
 		//System.out.println("Replace Null : "+treeReplacedNull.toString());
 		PerformBitOperation(treeReplacedNull);

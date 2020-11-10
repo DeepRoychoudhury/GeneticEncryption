@@ -3,6 +3,7 @@ package com.researchproject.services;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import org.springframework.stereotype.Service;
 
@@ -19,11 +20,11 @@ public class DecryptionService {
 	BinaryShiftingDecryption bsd = new BinaryShiftingDecryption();
 	
 	//Using Template Design Pattern
-	public Decrypt decryptCypherText(Decrypt decrypt) throws IOException {
-		System.out.println("Inside Decryption Service with user id : "+decrypt.getUser_id());
-		String aesDecrypted = aesd.decrypt(decrypt.getData(), decrypt.getPassword(), decrypt.getGroup_id());
+	public Decrypt decryptCypherText(Decrypt decrypt) throws IOException, ClassNotFoundException, SQLException {
+		System.out.println("Inside Decryption Service with user name : "+decrypt.getUser_name());
+		String aesDecrypted = aesd.decrypt(decrypt.getData(), decrypt.getGroup_name(), decrypt.getFile_name());
 		System.out.println("AES Decryption : "+aesDecrypted);
-		String geneticDecrypted = gda.geneticDecryption(aesDecrypted,1,2);
+		String geneticDecrypted = gda.geneticDecryption(aesDecrypted,decrypt.getFile_name());
 		String decryptedText = bsd.decryptBinary(geneticDecrypted);
 		outputDecryptedFile(decryptedText);
 		return decrypt;

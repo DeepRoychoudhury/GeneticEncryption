@@ -127,6 +127,19 @@ public class GeneticEncryptionAlgorithm {
 			}
 			difference--;
 		}
+		
+		//add 14th if less
+		if(firstbinarystring.length() != 14 && secondbinarystring.length()!= 14) {
+			int diff = 14 - firstbinarystring.length();
+			while(diff!=0) {
+				if(firstbinarystring.length() != 14) {
+					firstbinarystring = "0" + firstbinarystring;
+					secondbinarystring = "0" + secondbinarystring;
+				}
+				diff--;
+			}
+		}
+		
 		equalized.add(firstbinarystring);
 		equalized.add(secondbinarystring);
 		return equalized;

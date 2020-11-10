@@ -37,7 +37,7 @@ public class EncryptionService {
 		List<Integer> treeTraversed = bse.treeList(encrypt.getData());
 		String geneticEncryption = gea.geneticEncryption(treeTraversed, encrypt.getUser_name(), encrypt.getGroup_name()); 
 		String AESEncrypted = aes.encrypt(geneticEncryption,encrypt.getGroup_name(),encrypt.getPassword());
-		//System.out.println(AESEncrypted);
+		System.out.println(AESEncrypted);
 		//outputEncryptedFile(AESEncrypted,encrypt.getUser_id(),encrypt.getGroup_id(),encrypt.getFileid());
 		
 		  boolean isDataEntered = enterData(encrepo.fetchGroupId(encrypt.getGroup_name()),encrepo.fetchDataOwnerId(encrypt.getUser_name()),encrypt.getFile_name()); 
@@ -45,7 +45,7 @@ public class EncryptionService {
 		  outputEncryptedFile(AESEncrypted,file.getFile_name()); 
 		  }
 		  else {
-			  System.out.println("Record not saved in Files.");
+			  System.out.println("Record not saved in Files Database.");
 		  }
 		//String AESDecryption = aesd.decrypt(AESEncrypted,"DataConsumer","DataOwner");
 		//System.out.println(AESDecryption);
@@ -65,7 +65,7 @@ public class EncryptionService {
 	}
 
 	private void outputEncryptedFile(String AESOutput, String file_name) throws IOException {
-		BufferedWriter encryptionWriting = new BufferedWriter(new FileWriter("Encrypted_"+file_name+".txt")); 
+		BufferedWriter encryptionWriting = new BufferedWriter(new FileWriter(file_name+".txt")); 
 		encryptionWriting.write(AESOutput); 
 		encryptionWriting.close();
 		System.out.println("Encryption Successful");

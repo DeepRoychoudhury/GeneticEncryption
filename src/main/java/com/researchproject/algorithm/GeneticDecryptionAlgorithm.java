@@ -1,7 +1,12 @@
 package com.researchproject.algorithm;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.dao.DeadlockLoserDataAccessException;
+
+import com.researchproject.repository.DecryptionRepository;
 
 public class GeneticDecryptionAlgorithm {
 
@@ -12,8 +17,12 @@ public class GeneticDecryptionAlgorithm {
 	String finalGeneticResult = null;
 	List<Integer> asciiConverted = new ArrayList<Integer>();
 	
+	DecryptionRepository decryptRepo = new DecryptionRepository();
+			
 	//Template Design Pattern
-	public String geneticDecryption(String aesDecrypted, int dataOwnerId, int dataConsumerId) {
+	public String geneticDecryption(String aesDecrypted, String file_name) throws ClassNotFoundException, SQLException {
+		int dataOwnerId = decryptRepo.getDataOwnerUserId(file_name);
+		int dataConsumerId = decryptRepo.getGroupId(file_name);
 		splitter(aesDecrypted);
 		System.out.println("Before Mutation Decryption : "+splitByFourteen);
 		crossOverForDecryption(splitByFourteen,dataOwnerId,dataConsumerId);

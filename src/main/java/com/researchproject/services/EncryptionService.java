@@ -33,7 +33,7 @@ public class EncryptionService {
 	public Encrypt encryptTheData(Encrypt encrypt) throws Exception {
 		
 		List<Integer> treeTraversed = bse.treeList(encrypt.getData());
-		String geneticEncryption = gea.geneticEncryption(treeTraversed, encrypt.getUser_name(), encrypt.getGroup_name()); // change the accessibility Id
+		String geneticEncryption = gea.geneticEncryption(treeTraversed, encrypt.getUser_name(), encrypt.getGroup_name()); 
 		String AESEncrypted = aes.encrypt(geneticEncryption,encrypt.getGroup_name(),encrypt.getPassword());
 		//System.out.println(AESEncrypted);
 		//outputEncryptedFile(AESEncrypted,encrypt.getUser_id(),encrypt.getGroup_id(),encrypt.getFileid());

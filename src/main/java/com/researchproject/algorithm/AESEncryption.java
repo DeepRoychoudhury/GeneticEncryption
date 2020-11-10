@@ -16,7 +16,7 @@ import javax.xml.bind.DatatypeConverter;
 
 public class AESEncryption {
 
-	public static String encrypt(String strToEncrypt, String usersecret, String Ownersecret) 
+	public String encrypt(String strToEncrypt, String usersecret, String Ownersecret) 
 	{
 	    try
 	    {

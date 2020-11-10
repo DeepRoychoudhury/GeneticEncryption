@@ -1,13 +1,15 @@
 package com.researchproject.algorithm;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+
+import com.researchproject.repository.EncryptionRepository;
 
 public class GeneticEncryptionAlgorithm {
 
+	EncryptionRepository usersrepo = new EncryptionRepository();
+	
 	List<Integer> treeReplacedNull = new ArrayList<Integer>();
 	List<String> bitConverted = new ArrayList<String>();
 	List<String> geneticString = new ArrayList<String>();
@@ -15,7 +17,9 @@ public class GeneticEncryptionAlgorithm {
 	
 	//Visible encryption method
 	//Template Design Pattern
-	public String geneticEncryption(List<Integer> treeTraversedData, int dataOwnerId, int accessibilityId) {
+	public String geneticEncryption(List<Integer> treeTraversedData, String dataOwner_username, String group_name) throws ClassNotFoundException, SQLException{
+		int dataOwnerId = usersrepo.fetchDataOwnerId(dataOwner_username);
+		int accessibilityId = usersrepo.fetchGroupId(group_name);
 		replaceNull(treeTraversedData);
 		//System.out.println("Replace Null : "+treeReplacedNull.toString());
 		PerformBitOperation(treeReplacedNull);

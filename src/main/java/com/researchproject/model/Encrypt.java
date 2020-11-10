@@ -1,14 +1,47 @@
 //Pojo Class for Encryption
 package com.researchproject.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "users")
 public class Encrypt {
 
+	@Id
 	private int user_id;
-	private int fileid;
+	@Column(name = "user_name")
+	private String user_name;
+	private String file_name;
 	private String data;
-	private String group_id;
+	@Column(name = "group_id")
+	private int group_id;
+	@Column(name = "password")
 	private String password;
-	
+	private String group_name;	
+	@Column(name = "isDataOwner")
+	private String isDataOwner;
+
+	public String getIsDataOwner() {
+		return isDataOwner;
+	}
+	public void setIsDataOwner(String isDataOwner) {
+		this.isDataOwner = isDataOwner;
+	}
+	public String getUser_name() {
+		return user_name;
+	}
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+	public String getGroup_name() {
+		return group_name;
+	}
+	public void setGroup_name(String group_name) {
+		this.group_name = group_name;
+	}
 	public String getPassword() {
 		return password;
 	}
@@ -16,15 +49,14 @@ public class Encrypt {
 		this.password = password;
 	}
 		
-	public int getFileid() {
-		return fileid;
-	}
-	public void setFileid(int fileid) {
-		this.fileid = fileid;
-	}
-	
 	public String getData() {
 		return data;
+	}
+	public String getFile_name() {
+		return file_name;
+	}
+	public void setFile_name(String file_name) {
+		this.file_name = file_name;
 	}
 	public void setData(String data) {
 		this.data = data;
@@ -35,10 +67,10 @@ public class Encrypt {
 	public void setUser_id(int user_id) {
 		this.user_id = user_id;
 	}
-	public String getGroup_id() {
+	public int getGroup_id() {
 		return group_id;
 	}
-	public void setGroup_id(String group_id) {
+	public void setGroup_id(int group_id) {
 		this.group_id = group_id;
 	}
 	

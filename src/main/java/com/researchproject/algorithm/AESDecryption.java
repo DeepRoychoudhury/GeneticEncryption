@@ -1,25 +1,28 @@
 package com.researchproject.algorithm;
 
+import java.security.SecureRandom;
 import java.security.spec.KeySpec;
 import java.util.Base64;
+import java.util.Scanner;
 
 import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
+import javax.xml.bind.DatatypeConverter;
 
 public class AESDecryption {
-
-	public static String decrypt(String strToDecrypt, String secret, String salt) {
+	public static String decrypt(String strToDecrypt, String userSecret, String dataownersecret) {
 	    try
 	    {
 	        byte[] iv = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 	        IvParameterSpec ivspec = new IvParameterSpec(iv);
 	         
 	        SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
-	        KeySpec spec = new PBEKeySpec(secret.toCharArray(), salt.getBytes(), 65536, 256);
+	        KeySpec spec = new PBEKeySpec(userSecret.toCharArray(), dataownersecret.getBytes(), 65536, 256);
 	        SecretKey tmp = factory.generateSecret(spec);
 	        SecretKeySpec secretKey = new SecretKeySpec(tmp.getEncoded(), "AES");
 	         

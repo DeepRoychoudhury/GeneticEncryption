@@ -1,3 +1,9 @@
+/**
+ * 
+ * @author Deep Roychoudhury
+ *
+ *
+ */
 package com.researchproject.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,19 +14,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.researchproject.model.Encrypt;
-import com.researchproject.services.EncryptionService;
+import com.researchproject.model.Decrypt;
+import com.researchproject.services.DecryptionService;
 
 @RestController
-@RequestMapping("/api/encrypt/")
-public class EncryptionController {
+@RequestMapping("/api/decrypt/")
+public class DecryptionController {
 
 	@Autowired
-	EncryptionService encryptData = new EncryptionService();
+	DecryptionService decryptData = new DecryptionService();
 	
 	@PostMapping(path="/data")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Encrypt fetchText(@RequestBody Encrypt encrypt) throws Exception {
-		return encryptData.encryptTheData(encrypt);
+	public Decrypt fetchText(@RequestBody Decrypt decrypt) throws Exception {
+		return decryptData.decryptCypherText(decrypt);
 	}
 }

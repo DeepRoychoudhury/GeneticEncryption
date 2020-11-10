@@ -14,6 +14,6 @@ public class FilesService {
 	
 	public boolean enterFileRecord(Files file) {
 		filesrepo.save(file);
-		return false;
+		return true;
 	}
 }

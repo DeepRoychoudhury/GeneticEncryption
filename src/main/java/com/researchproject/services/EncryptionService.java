@@ -14,6 +14,7 @@ import com.researchproject.algorithm.BinaryShiftingEncryption;
 import com.researchproject.algorithm.GeneticEncryptionAlgorithm;
 import com.researchproject.model.Encrypt;
 import com.researchproject.model.Files;
+import com.researchproject.repository.EncryptionRepository;
 
 @Service
 public class EncryptionService {		
@@ -24,6 +25,7 @@ public class EncryptionService {
 	@Autowired
 	FilesService fileservice;
 	
+	EncryptionRepository encrepo = new EncryptionRepository();	
 	BinaryShiftingEncryption bse = new BinaryShiftingEncryption();	
 	GeneticEncryptionAlgorithm gea = new GeneticEncryptionAlgorithm();
 	AESEncryption aes = new AESEncryption();
@@ -38,21 +40,27 @@ public class EncryptionService {
 		//System.out.println(AESEncrypted);
 		//outputEncryptedFile(AESEncrypted,encrypt.getUser_id(),encrypt.getGroup_id(),encrypt.getFileid());
 		
-		  boolean isDataEntered = enterData(encrypt.getGroup_id(),encrypt.getUser_id(),encrypt.getFile_name()); 
+		  boolean isDataEntered = enterData(encrepo.fetchGroupId(encrypt.getGroup_name()),encrepo.fetchDataOwnerId(encrypt.getUser_name()),encrypt.getFile_name()); 
 		  if(isDataEntered) {
-		  outputEncryptedFile(AESEncrypted,encrypt.getUser_id(),encrypt.getGroup_id(),encrypt.getFile_name()); 
+		  outputEncryptedFile(AESEncrypted,file.getUser_id(),file.getGroup_id(),file.getFile_name()); 
 		  }
-		 
+		  else {
+			  System.out.println("Record not saved in Files.");
+		  }
 		//String AESDecryption = aesd.decrypt(AESEncrypted,"DataConsumer","DataOwner");
 		//System.out.println(AESDecryption);
 		return encrypt;
 	}
 
 	private boolean enterData(int group_id, int user_id, String file_name) {
+		boolean isRecordInserted = false;
 		file.setGroup_id(group_id);
 		file.setUser_id(user_id);
 		file.setFile_name(file_name);
-		fileservice.enterFileRecord(file);
+		isRecordInserted = fileservice.enterFileRecord(file);
+		if(isRecordInserted) {
+			return true;
+		}
 		return false;
 	}
 

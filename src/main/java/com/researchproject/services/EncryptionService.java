@@ -42,7 +42,7 @@ public class EncryptionService {
 		
 		  boolean isDataEntered = enterData(encrepo.fetchGroupId(encrypt.getGroup_name()),encrepo.fetchDataOwnerId(encrypt.getUser_name()),encrypt.getFile_name()); 
 		  if(isDataEntered) {
-		  outputEncryptedFile(AESEncrypted,file.getUser_id(),file.getGroup_id(),file.getFile_name()); 
+		  outputEncryptedFile(AESEncrypted,file.getFile_name()); 
 		  }
 		  else {
 			  System.out.println("Record not saved in Files.");
@@ -64,8 +64,8 @@ public class EncryptionService {
 		return false;
 	}
 
-	private void outputEncryptedFile(String AESOutput,int dataOwner_id,int group_id, String file_name) throws IOException {
-		BufferedWriter encryptionWriting = new BufferedWriter(new FileWriter("Encrypted_"+dataOwner_id+"_"+group_id+"_"+file_name+".txt")); 
+	private void outputEncryptedFile(String AESOutput, String file_name) throws IOException {
+		BufferedWriter encryptionWriting = new BufferedWriter(new FileWriter("Encrypted_"+file_name+".txt")); 
 		encryptionWriting.write(AESOutput); 
 		encryptionWriting.close();
 		System.out.println("Encryption Successful");

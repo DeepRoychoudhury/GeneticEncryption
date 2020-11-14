@@ -1,11 +1,13 @@
 package com.researchproject.services;
 
-import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.researchproject.algorithm.AESDecryption;
@@ -13,17 +15,24 @@ import com.researchproject.algorithm.AESEncryption;
 import com.researchproject.algorithm.BinaryShiftingEncryption;
 import com.researchproject.algorithm.GeneticEncryptionAlgorithm;
 import com.researchproject.model.Encrypt;
-import com.researchproject.model.Files;
+import com.researchproject.model.FilesTable;
+import com.researchproject.repository.AwsS3Repository;
 import com.researchproject.repository.EncryptionRepository;
 
 @Service
 public class EncryptionService {		
 	
 	@Autowired
-	Files file;
+	FilesTable file;
 	
 	@Autowired
 	FilesService fileservice;
+	
+	@Autowired
+	AwsS3Repository awsS3repo;
+	
+	@Value("deep.geneticEncryption.bucketName") 
+	private String bucketName;
 	
 	EncryptionRepository encrepo = new EncryptionRepository();	
 	BinaryShiftingEncryption bse = new BinaryShiftingEncryption();	
@@ -65,9 +74,12 @@ public class EncryptionService {
 	}
 
 	private void outputEncryptedFile(String AESOutput, String file_name) throws IOException {
-		BufferedWriter encryptionWriting = new BufferedWriter(new FileWriter(file_name+".txt")); 
-		encryptionWriting.write(AESOutput); 
-		encryptionWriting.close();
+		//BufferedWriter encryptionWriting = new BufferedWriter(new FileWriter()); 
+		FileWriter fileToSave = new FileWriter(file_name+".txt");
+		fileToSave.write(AESOutput);
+		fileToSave.close();
+		awsS3repo.saveFileToS3(bucketName, fileToSave ,file_name);
+		//encryptionWriting.close();
 		System.out.println("Encryption Successful");
 	}
 	

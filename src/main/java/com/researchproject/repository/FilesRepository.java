@@ -4,11 +4,11 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.researchproject.model.Encrypt;
-import com.researchproject.model.Files;
+import com.researchproject.model.FilesTable;
 
 @Repository
 public interface FilesRepository extends CrudRepository<Encrypt, Long>{
 
-	void save(Files file);
+	void save(FilesTable file);
 
 }

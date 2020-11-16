@@ -30,15 +30,13 @@ public class AzureBlobAdapter {
     @Autowired
     BlobClientBuilder client;
     
-    public String upload(String file, String fileName, String blobName) {
+    public boolean upload(String file, String fileName, String blobName) {
         if(file != null && file.length() > 0) {
-            //implement your own file name logic.
-			//String fileName = prefixName+ UUID.randomUUID().toString() +file.getOriginalFilename();
 			InputStream dataStream = new ByteArrayInputStream(file.getBytes(StandardCharsets.UTF_8));
 			client.blobName(blobName).buildClient().upload(dataStream, file.length());
-			return file;
+			return true;
         }
-        return null;
+        return false;
     }
 
     public byte[] getFile(String name) {

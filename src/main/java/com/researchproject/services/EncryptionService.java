@@ -35,9 +35,6 @@ public class EncryptionService {
 	@Autowired
 	AzureBlobAdapter azureRepo;
 	
-	@Value("${blob}")
-	String blobName; 
-	
 	EncryptionRepository encrepo = new EncryptionRepository();	
 	BinaryShiftingEncryption bse = new BinaryShiftingEncryption();	
 	GeneticEncryptionAlgorithm gea = new GeneticEncryptionAlgorithm();
@@ -83,7 +80,7 @@ public class EncryptionService {
 		 * File file = new File(file_name+".txt"); FileWriter fileToSave = new
 		 * FileWriter(file); fileToSave.write(AESOutput); fileToSave.close();
 		 */
-		azureRepo.upload(AESOutput, file_name, blobName);
+		azureRepo.upload(AESOutput, file_name);
 		//awsS3repo.saveFileToS3(bucketName, AESOutput ,file_name+".txt");
 		//encryptionWriting.close();
 		System.out.println("Encryption Successful");

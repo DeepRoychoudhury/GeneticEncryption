@@ -30,7 +30,8 @@ public class AzureBlobAdapter {
     @Autowired
     BlobClientBuilder client;
     
-    public boolean upload(String file, String fileName, String blobName) {
+    //Saving file to Azure blob storage
+    public boolean upload(String file, String blobName) {
         if(file != null && file.length() > 0) {
 			InputStream dataStream = new ByteArrayInputStream(file.getBytes(StandardCharsets.UTF_8));
 			client.blobName(blobName).buildClient().upload(dataStream, file.length());

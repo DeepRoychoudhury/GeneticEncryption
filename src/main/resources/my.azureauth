@@ -1,0 +1,12 @@
+{
+  "clientId": "/subscriptions/352cd120-22dd-42f2-a6de-01dc8a9ed308/resourceGroups/encryptionstorage/providers/Microsoft.Storage/storageAccounts/encdb",
+  "clientSecret": "n5vQuJblHW76Czte6OHdUEQA1Nc14bQJrTf5gB0qqXIufUHA89bSLonIt+hRXgE4pLxQC1IsEN7YMxNfMgu8fw==",
+  "subscriptionId": "352cd120-22dd-42f2-a6de-01dc8a9ed308",
+  "tenantId": "6edb49c1-bf72-4eea-8b3f-a7fd0a25b68c",
+  "activeDirectoryEndpointUrl": "https://login.microsoftonline.com",
+  "resourceManagerEndpointUrl": "https://management.azure.com/",
+  "activeDirectoryGraphResourceId": "https://graph.windows.net/",
+  "sqlManagementEndpointUrl": "https://management.core.windows.net:8443/",
+  "galleryEndpointUrl": "https://gallery.azure.com/",
+  "managementEndpointUrl": "https://management.core.windows.net/"
+}

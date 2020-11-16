@@ -1,10 +1,7 @@
 package com.researchproject.services;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
-import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,6 +14,7 @@ import com.researchproject.algorithm.GeneticEncryptionAlgorithm;
 import com.researchproject.model.Encrypt;
 import com.researchproject.model.FilesTable;
 import com.researchproject.repository.AwsS3Repository;
+import com.researchproject.repository.AzureBlobAdapter;
 import com.researchproject.repository.EncryptionRepository;
 
 @Service
@@ -31,8 +29,14 @@ public class EncryptionService {
 	@Autowired
 	AwsS3Repository awsS3repo;
 	
-	@Value("deep.geneticEncryption.bucketName") 
+	@Value("${deep.geneticEncryption.bucketName}") 
 	private String bucketName;
+	
+	@Autowired
+	AzureBlobAdapter azureRepo;
+	
+	@Value("${blob}")
+	String blobName; 
 	
 	EncryptionRepository encrepo = new EncryptionRepository();	
 	BinaryShiftingEncryption bse = new BinaryShiftingEncryption();	
@@ -67,7 +71,7 @@ public class EncryptionService {
 		file.setUser_id(user_id);
 		file.setFile_name(file_name);
 		isRecordInserted = fileservice.enterFileRecord(file);
-		if(isRecordInserted) {
+		if(isRecordInserted) { 
 			return true;
 		}
 		return false;
@@ -75,10 +79,12 @@ public class EncryptionService {
 
 	private void outputEncryptedFile(String AESOutput, String file_name) throws IOException {
 		//BufferedWriter encryptionWriting = new BufferedWriter(new FileWriter()); 
-		FileWriter fileToSave = new FileWriter(file_name+".txt");
-		fileToSave.write(AESOutput);
-		fileToSave.close();
-		awsS3repo.saveFileToS3(bucketName, fileToSave ,file_name);
+		/*
+		 * File file = new File(file_name+".txt"); FileWriter fileToSave = new
+		 * FileWriter(file); fileToSave.write(AESOutput); fileToSave.close();
+		 */
+		azureRepo.upload(AESOutput, file_name, blobName);
+		//awsS3repo.saveFileToS3(bucketName, AESOutput ,file_name+".txt");
 		//encryptionWriting.close();
 		System.out.println("Encryption Successful");
 	}

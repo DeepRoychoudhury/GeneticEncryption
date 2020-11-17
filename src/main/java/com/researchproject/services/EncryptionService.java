@@ -1,10 +1,11 @@
 package com.researchproject.services;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.researchproject.algorithm.AESDecryption;
@@ -28,10 +29,7 @@ public class EncryptionService {
 	
 	@Autowired
 	AwsS3Repository awsS3repo;
-	
-	@Value("${deep.geneticEncryption.bucketName}") 
-	private String bucketName;
-	
+		
 	@Autowired
 	AzureBlobAdapter azureRepo;
 	
@@ -45,9 +43,11 @@ public class EncryptionService {
 	public Encrypt encryptTheData(Encrypt encrypt) throws Exception {
 		
 		List<Integer> treeTraversed = bse.treeList(encrypt.getData());
+		System.out.println("Tree Traversed : "+treeTraversed);
 		String geneticEncryption = gea.geneticEncryption(treeTraversed, encrypt.getUser_name(), encrypt.getGroup_name()); 
+		System.out.println("Genetic Encryption = "+geneticEncryption);
 		String AESEncrypted = aes.encrypt(geneticEncryption,encrypt.getGroup_name(),encrypt.getPassword());
-		System.out.println(AESEncrypted);
+		System.out.println("AES : "+AESEncrypted);
 		//outputEncryptedFile(AESEncrypted,encrypt.getUser_id(),encrypt.getGroup_id(),encrypt.getFileid());
 		
 		  boolean isDataEntered = enterData(encrepo.fetchGroupId(encrypt.getGroup_name()),encrepo.fetchDataOwnerId(encrypt.getUser_name()),encrypt.getFile_name()); 
@@ -76,13 +76,15 @@ public class EncryptionService {
 
 	private void outputEncryptedFile(String AESOutput, String file_name) throws IOException {
 		//BufferedWriter encryptionWriting = new BufferedWriter(new FileWriter()); 
-		/*
-		 * File file = new File(file_name+".txt"); FileWriter fileToSave = new
-		 * FileWriter(file); fileToSave.write(AESOutput); fileToSave.close();
-		 */
-		azureRepo.upload(AESOutput, file_name);
+		
+		  File file = new File(file_name+".txt"); 
+		  FileWriter fileToSave = new FileWriter(file); 
+		  fileToSave.write(AESOutput); 
+		  fileToSave.close();
+		 
+		//azureRepo.upload(AESOutput, file_name);
 		//awsS3repo.saveFileToS3(bucketName, AESOutput ,file_name+".txt");
-		//encryptionWriting.close();
+		
 		System.out.println("Encryption Successful");
 	}
 	

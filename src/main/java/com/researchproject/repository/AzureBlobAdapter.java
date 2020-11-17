@@ -9,6 +9,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,13 +41,16 @@ public class AzureBlobAdapter {
         return false;
     }
 
-    public byte[] getFile(String name) {
+    public String getFile(String name) {
         try {
-            File temp = new File("/temp/"+name);
+            File temp = new File(name);
             BlobProperties properties = client.blobName(name).buildClient().downloadToFile(temp.getPath());
-            byte[] content = Files.readAllBytes(Paths.get(temp.getPath()));
-            temp.delete();
-            return content;
+            String s = Files.readAllLines(Paths.get(temp.getPath())).toString().replace("[", "").replace("]", "");
+			/*
+			 * byte[] content = Files.readAllBytes(Paths.get(temp.getPath()));
+			 * temp.delete();
+			 */
+            return s;
         } catch (Exception e) {
             e.printStackTrace();
         }

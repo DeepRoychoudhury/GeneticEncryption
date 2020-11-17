@@ -69,10 +69,11 @@ public class GeneticDecryptionAlgorithm {
 	
 	//Finding out crossover
 	private int crossOverForDecryption(String splitByFourteen,int dataOwnerId,int dataConsumerId) {
+		String[] splittedbinary = splitByFourteen.split(", ");
 		List<Integer> values = new ArrayList<Integer>();
 		values.add(dataOwnerId);
 		values.add(dataConsumerId);
-		values.add(splitByFourteen.length());
+		values.add(splittedbinary.length + 1);
 		cross = crossovernumber(values);
 
 		System.out.println("Cross Number is : "+cross);

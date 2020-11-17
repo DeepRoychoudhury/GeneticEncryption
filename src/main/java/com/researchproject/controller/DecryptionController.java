@@ -27,6 +27,6 @@ public class DecryptionController {
 	@PostMapping(path="/data")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Decrypt fetchText(@RequestBody Decrypt decrypt) throws Exception {
-		return decryptData.decryptCypherText(decrypt);
+		return decryptData.decryptCypherText(decrypt, decrypt.getFile_name());
 	}
 }

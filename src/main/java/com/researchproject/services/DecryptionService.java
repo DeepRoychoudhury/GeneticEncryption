@@ -28,12 +28,12 @@ public class DecryptionService {
 	
 	//Using Template Design Pattern
 	public Decrypt decryptCypherText(Decrypt decrypt, String filename) throws IOException, ClassNotFoundException, SQLException {
-		//fetchFileFromAzure(filename);
+		fetchFileFromAzure(filename);
 		System.out.println("Inside Decryption Service with user name : "+decrypt.getUser_name());
 		
 		//String aesDecrypted = aesd.decrypt(encryptedText, decrypt.getGroup_name(), decrypt.getFile_name());
 		
-		String aesDecrypted = aesd.decrypt(decrypt.getData(), decrypt.getGroup_name(), decrypt.getFile_name());
+		String aesDecrypted = aesd.decrypt(encryptedText, decrypt.getGroup_name(), decrypt.getFile_name());
 		
 		System.out.println("AES Decryption : "+aesDecrypted);
 		String geneticDecrypted = gda.geneticDecryption(aesDecrypted,decrypt.getFile_name());

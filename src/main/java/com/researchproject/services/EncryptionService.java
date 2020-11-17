@@ -77,12 +77,12 @@ public class EncryptionService {
 	private void outputEncryptedFile(String AESOutput, String file_name) throws IOException {
 		//BufferedWriter encryptionWriting = new BufferedWriter(new FileWriter()); 
 		
-		  File file = new File(file_name+".txt"); 
-		  FileWriter fileToSave = new FileWriter(file); 
-		  fileToSave.write(AESOutput); 
-		  fileToSave.close();
+		/*
+		 * File file = new File(file_name+".txt"); FileWriter fileToSave = new
+		 * FileWriter(file); fileToSave.write(AESOutput); fileToSave.close();
+		 */
 		 
-		//azureRepo.upload(AESOutput, file_name);
+		azureRepo.upload(AESOutput, file_name);
 		//awsS3repo.saveFileToS3(bucketName, AESOutput ,file_name+".txt");
 		
 		System.out.println("Encryption Successful");

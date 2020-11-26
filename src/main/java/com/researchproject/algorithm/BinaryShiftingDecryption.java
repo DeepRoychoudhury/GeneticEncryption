@@ -11,6 +11,7 @@ public class BinaryShiftingDecryption {
 	
 	
 	public String decryptBinary(String geneticDecryption) {
+		sortedString.clear();
 		splittingDecrypted(geneticDecryption.replace("[", "").replace("]", ""));
 		
 		convertToCharacter(sortedString.toString());

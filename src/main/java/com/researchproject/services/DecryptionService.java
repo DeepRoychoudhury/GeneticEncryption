@@ -13,12 +13,15 @@ import com.researchproject.algorithm.BinaryShiftingDecryption;
 import com.researchproject.algorithm.GeneticDecryptionAlgorithm;
 import com.researchproject.model.Decrypt;
 import com.researchproject.repository.AzureBlobAdapter;
+import com.researchproject.repository.DecryptionRepository;
 
 @Service
 public class DecryptionService {
 
 	@Autowired
 	AzureBlobAdapter azureRepo;
+	
+	DecryptionRepository decryptRepo = new DecryptionRepository();
 	
 	private String encryptedText;
 	
@@ -28,6 +31,8 @@ public class DecryptionService {
 	
 	//Using Template Design Pattern
 	public String decryptCypherText(Decrypt decrypt, String filename) throws IOException, ClassNotFoundException, SQLException {
+		boolean user = checkUser(decrypt,filename);
+		if(user == true) {
 		fetchFileFromAzure(filename);
 		System.out.println("Inside Decryption Service with user name : "+decrypt.getUser_name());
 		
@@ -42,6 +47,8 @@ public class DecryptionService {
 		System.out.println("Final Decryption : "+decryptedText);
 		//outputDecryptedFile(decryptedText);
 		return decryptedText;
+		}
+		return "User not authorized";
 	}
 	
 	private void outputDecryptedFile(String AESOutput) throws IOException {
@@ -63,5 +70,11 @@ public class DecryptionService {
 		//awsS3repo.saveFileToS3(bucketName, AESOutput ,file_name+".txt");
 		//encryptionWriting.close();
 		System.out.println("Fetching successfull.");
+	}
+	
+	private boolean checkUser(Decrypt decrypt, String filename) {
+		boolean value = false;
+		value = decryptRepo.checkUserGroup(decrypt, filename);
+		return value;
 	}
 }

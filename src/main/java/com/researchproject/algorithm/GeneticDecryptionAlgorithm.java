@@ -21,6 +21,8 @@ public class GeneticDecryptionAlgorithm {
 			
 	//Template Design Pattern
 	public String geneticDecryption(String aesDecrypted, String file_name) throws ClassNotFoundException, SQLException {
+		mutatedString.clear();
+		asciiConverted.clear();
 		int dataOwnerId = decryptRepo.getDataOwnerUserId(file_name);
 		int dataConsumerId = decryptRepo.getGroupId(file_name);
 		splitter(aesDecrypted);

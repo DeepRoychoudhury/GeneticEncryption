@@ -42,15 +42,21 @@ public class GeneticEncryptionApplication {
 		return new Group();
 	}
 	
-	@Bean
-	public AmazonS3 awsS3Client(@Value("cloud.aws.region.use-default-aws-region-chain") String region) {
-		//return AmazonS3ClientBuilder.standard().withCredentials(credentialProvider).withRegion(region).build();			
-		//AWSCredentials awscred = new BasicSessionCredentials(awsAccessKey, awsSecretKey, sessionToken);
-		BasicSessionCredentials basicSessionCredentials = new BasicSessionCredentials(this.awsAccessKey, this.awsSecretKey, this.sessionToken);
-		return AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(basicSessionCredentials)).withRegion(Regions.US_EAST_1).build();
-		//AmazonS3 s3client = new AmazonS3Client(awscred);
-		//return s3client;
-	}
+	/*
+	 * @Bean public AmazonS3
+	 * awsS3Client(@Value("cloud.aws.region.use-default-aws-region-chain") String
+	 * region) { //return
+	 * AmazonS3ClientBuilder.standard().withCredentials(credentialProvider).
+	 * withRegion(region).build(); //AWSCredentials awscred = new
+	 * BasicSessionCredentials(awsAccessKey, awsSecretKey, sessionToken);
+	 * BasicSessionCredentials basicSessionCredentials = new
+	 * BasicSessionCredentials(this.awsAccessKey, this.awsSecretKey,
+	 * this.sessionToken); return
+	 * AmazonS3ClientBuilder.standard().withCredentials(new
+	 * AWSStaticCredentialsProvider(basicSessionCredentials)).withRegion(Regions.
+	 * US_EAST_1).build(); //AmazonS3 s3client = new AmazonS3Client(awscred);
+	 * //return s3client; }
+	 */
 	
 	@Bean
     public BlobClientBuilder getClient() {

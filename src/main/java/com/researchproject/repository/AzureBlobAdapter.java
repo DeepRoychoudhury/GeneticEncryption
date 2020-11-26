@@ -43,9 +43,8 @@ public class AzureBlobAdapter {
 
     public String getFile(String name) {
         try {
-            File temp = new File(name);
-            BlobProperties properties = client.blobName(name).buildClient().downloadToFile(temp.getPath());
-            String s = Files.readAllLines(Paths.get(temp.getPath())).toString().replace("[", "").replace("]", "");
+            BlobProperties properties = client.blobName(name).buildClient().downloadToFile("encfile",true);
+            String s = Files.readAllLines(Paths.get("encfile")).toString().replace("[", "").replace("]", "");
 			/*
 			 * byte[] content = Files.readAllBytes(Paths.get(temp.getPath()));
 			 * temp.delete();

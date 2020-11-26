@@ -27,7 +27,7 @@ public class DecryptionService {
 	BinaryShiftingDecryption bsd = new BinaryShiftingDecryption();
 	
 	//Using Template Design Pattern
-	public Decrypt decryptCypherText(Decrypt decrypt, String filename) throws IOException, ClassNotFoundException, SQLException {
+	public String decryptCypherText(Decrypt decrypt, String filename) throws IOException, ClassNotFoundException, SQLException {
 		fetchFileFromAzure(filename);
 		System.out.println("Inside Decryption Service with user name : "+decrypt.getUser_name());
 		
@@ -40,8 +40,8 @@ public class DecryptionService {
 		System.out.println("Genetic Decryption : "+geneticDecrypted);
 		String decryptedText = bsd.decryptBinary(geneticDecrypted);
 		System.out.println("Final Decryption : "+decryptedText);
-		outputDecryptedFile(decryptedText);
-		return decrypt;
+		//outputDecryptedFile(decryptedText);
+		return decryptedText;
 	}
 	
 	private void outputDecryptedFile(String AESOutput) throws IOException {

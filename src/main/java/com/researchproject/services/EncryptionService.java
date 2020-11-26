@@ -1,7 +1,5 @@
 package com.researchproject.services;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
@@ -14,7 +12,6 @@ import com.researchproject.algorithm.BinaryShiftingEncryption;
 import com.researchproject.algorithm.GeneticEncryptionAlgorithm;
 import com.researchproject.model.Encrypt;
 import com.researchproject.model.FilesTable;
-import com.researchproject.repository.AwsS3Repository;
 import com.researchproject.repository.AzureBlobAdapter;
 import com.researchproject.repository.EncryptionRepository;
 
@@ -27,8 +24,9 @@ public class EncryptionService {
 	@Autowired
 	FilesService fileservice;
 	
-	@Autowired
-	AwsS3Repository awsS3repo;
+	/*
+	 * @Autowired AwsS3Repository awsS3repo;
+	 */
 		
 	@Autowired
 	AzureBlobAdapter azureRepo;

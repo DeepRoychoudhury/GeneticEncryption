@@ -24,6 +24,11 @@ public class GeneticEncryptionAlgorithm {
 	//Visible encryption method
 	//Template Design Pattern
 	public String geneticEncryption(List<Integer> treeTraversedData, String dataOwner_username, String group_name) throws ClassNotFoundException, SQLException{
+		treeReplacedNull.clear();
+		bitConverted.clear();
+		geneticString.clear();
+		geneticEncrypted = null;
+		
 		int dataOwnerId = usersrepo.fetchDataOwnerId(dataOwner_username);
 		int accessibilityId = usersrepo.fetchGroupId(group_name);
 				

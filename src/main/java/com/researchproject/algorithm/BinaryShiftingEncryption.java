@@ -62,6 +62,11 @@ public class BinaryShiftingEncryption {
 		//External method for call 
 		//Template Design Pattern
 		public List<Integer> treeList(String data){
+			nodeCount = 0;
+			splittedData.clear();
+			ManipulatedAscii.clear();
+			positionedAscii.clear();
+			ordered.clear();
 			splittingData(data);
 			System.out.println("Splitted Data : "+splittedData.toString());
 			ComputingASCII(splittedData);

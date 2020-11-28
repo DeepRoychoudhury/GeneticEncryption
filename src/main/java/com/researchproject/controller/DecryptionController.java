@@ -36,6 +36,8 @@ import com.researchproject.services.DecryptionService;
 @RequestMapping("/api/decrypt/")
 public class DecryptionController {
 
+	Decrypt decrypt = new Decrypt();
+	
 	@Autowired
 	DecryptionService decryptData = new DecryptionService();
 	
@@ -47,35 +49,14 @@ public class DecryptionController {
 		  return ResponseEntity.ok().contentType(MediaType.parseMediaType(MediaType.APPLICATION_OCTET_STREAM_VALUE)).header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" ).body(output);
 	  }
 	  
-	  @GetMapping(path="/data") 
-	  public ResponseEntity<Object> fetchingText(@RequestBody Decrypt decrypt) throws Exception { 
+	  @GetMapping(path="/data/{user_name}/{password}/{group_name}/{file_name}") 
+	  public ResponseEntity<Object> fetchingText(@PathVariable(name = "user_name") String user_name,@PathVariable(name = "password") String password,@PathVariable(name = "group_name") String group_name,@PathVariable(name = "file_name") String file_name) throws Exception { 
+		  decrypt.setUser_name(user_name);
+		  decrypt.setPassword(password);
+		  decrypt.setGroup_name(group_name);
+		  decrypt.setFile_name(file_name);
 		  String output = decryptData.decryptCypherText(decrypt, decrypt.getFile_name()); 
 		  //return new File(output); 
 		  return ResponseEntity.ok().contentType(MediaType.parseMediaType(MediaType.APPLICATION_OCTET_STREAM_VALUE)).header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" ).body(output);
-	  }
-	
-	  @GetMapping("/downloadFile")
-	      public ResponseEntity<Object> downloadFile(@RequestBody Decrypt decrypt,HttpServletRequest request) {
-	         	          
-	          String fileName = decrypt.getFile_name();
-	          Object resource = null;
-	  	if(fileName !=null && !fileName.isEmpty()) {
-	        	  try {
-	              resource = decryptData.decryptCypherText(decrypt, decrypt.getFile_name());
-	          } catch (Exception e) {
-	        	  e.printStackTrace();
-	          }
-	  // Try to determine file's content type
-	  		String contentType = null;
-	  		contentType = request.getServletContext().getMimeType(((File) resource).getAbsolutePath());
-	  // Fallback to the default content type if type could not be determined
-	          if(contentType == null) {
-	        	  contentType = "application/octet-stream";
-	          }
-	  	return ResponseEntity.ok().contentType(MediaType.parseMediaType(contentType)).header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" ).body(resource);
-	          } 
-	          else {
-	          return ResponseEntity.notFound().build();
-	  }
 	  }
 }

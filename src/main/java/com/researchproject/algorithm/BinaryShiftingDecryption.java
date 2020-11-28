@@ -66,8 +66,15 @@ public class BinaryShiftingDecryption {
 		return splittedText;
 	}
 
+	//Merge sort for sorting
 	private String sortingTheStrings(List<Integer> decryptedString) {
-		String sorted = sort(decryptedString, 0, decryptedString.size() - 1);	
+		String sorted = null;
+		if(decryptedString.size() > 1) {
+		sorted = sort(decryptedString, 0, decryptedString.size() - 1);
+		}
+		else {
+			sorted = decryptedString.toString();
+		}
 		return sorted;
 	}
 	

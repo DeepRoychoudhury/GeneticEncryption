@@ -76,6 +76,8 @@ public class GeneticDecryptionAlgorithm {
 		values.add(dataOwnerId);
 		values.add(dataConsumerId);
 		values.add(splittedbinary.length + 1);
+		System.out.println("Cross Over values : "+values.get(0)+""+values.get(1)+""+values.get(2));
+
 		cross = crossovernumber(values);
 
 		System.out.println("Cross Number is : "+cross);

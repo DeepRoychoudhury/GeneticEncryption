@@ -73,7 +73,7 @@ public class GeneticEncryptionAlgorithm {
 		crossValue.add(dataOwnerId);
 		crossValue.add(accessibilityId);
 		crossValue.add(treeTraversedData.size());
-		
+		System.out.println("Cross Over values : "+crossValue.get(0)+""+crossValue.get(1)+""+crossValue.get(2));
 		int cross = crossovernumber(crossValue);
 
 		System.out.println("Cross Number is : "+cross);

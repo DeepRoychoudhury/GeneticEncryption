@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,8 @@ public class DecryptionService {
 	@Autowired
 	AzureBlobAdapter azureRepo;
 	
+	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(DecryptionService.class);
+			
 	DecryptionRepository decryptRepo = new DecryptionRepository();
 	
 	private String encryptedText;
@@ -35,16 +38,19 @@ public class DecryptionService {
 		if(user == true) {
 		fetchFileFromAzure(filename);
 		System.out.println("Inside Decryption Service with user name : "+decrypt.getUser_name());
-		
+		logger.info("Inside Decryption Service with user name : "+decrypt.getUser_name());
 		//String aesDecrypted = aesd.decrypt(encryptedText, decrypt.getGroup_name(), decrypt.getFile_name());
 		
-		String aesDecrypted = aesd.decrypt(encryptedText, decrypt.getGroup_name(), decrypt.getFile_name());
-		
+		String aesDecrypted = aesd.decrypt(encryptedText, decrypt.getGroup_name(), decrypt.getFile_name());		
 		System.out.println("AES Decryption : "+aesDecrypted);
+		logger.info("AES Decryption : "+aesDecrypted);
+		
 		String geneticDecrypted = gda.geneticDecryption(aesDecrypted,decrypt.getFile_name());
 		System.out.println("Genetic Decryption : "+geneticDecrypted);
+		logger.info("Genetic Decryption : "+geneticDecrypted);
 		String decryptedText = bsd.decryptBinary(geneticDecrypted);
 		System.out.println("Final Decryption : "+decryptedText);
+		logger.info("Final Decryption : "+decryptedText);
 		//outputDecryptedFile(decryptedText);
 		return decryptedText;
 		}

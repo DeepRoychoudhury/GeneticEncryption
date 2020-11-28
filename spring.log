@@ -1,0 +1,143 @@
+2020-11-28 23:06:04.471  INFO 17080 --- [main] c.r.GeneticEncryptionApplication         : Starting GeneticEncryptionApplication on LAPTOP-4VRCVQKS with PID 17080 (D:\Java\spring_workspace\GeneticEncryption\target\classes started by Deep Roychoudhury in D:\Java\spring_workspace\GeneticEncryption)
+2020-11-28 23:06:04.474  INFO 17080 --- [main] c.r.GeneticEncryptionApplication         : No active profile set, falling back to default profiles: default
+2020-11-28 23:06:04.909  INFO 17080 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-11-28 23:06:04.971  INFO 17080 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 56ms. Found 3 JPA repository interfaces.
+2020-11-28 23:06:05.078  WARN 17080 --- [main] i.InstanceMetadataServiceResourceFetcher : Fail to retrieve token 
+
+com.amazonaws.SdkClientException: Failed to connect to service endpoint: 
+	at com.amazonaws.internal.EC2ResourceFetcher.doReadResource(EC2ResourceFetcher.java:100) ~[aws-java-sdk-core-1.11.792.jar:na]
+	at com.amazonaws.internal.InstanceMetadataServiceResourceFetcher.getToken(InstanceMetadataServiceResourceFetcher.java:91) ~[aws-java-sdk-core-1.11.792.jar:na]
+	at com.amazonaws.internal.InstanceMetadataServiceResourceFetcher.readResource(InstanceMetadataServiceResourceFetcher.java:69) ~[aws-java-sdk-core-1.11.792.jar:na]
+	at com.amazonaws.internal.EC2ResourceFetcher.readResource(EC2ResourceFetcher.java:66) ~[aws-java-sdk-core-1.11.792.jar:na]
+	at com.amazonaws.util.EC2MetadataUtils.getItems(EC2MetadataUtils.java:402) ~[aws-java-sdk-core-1.11.792.jar:na]
+	at com.amazonaws.util.EC2MetadataUtils.getData(EC2MetadataUtils.java:371) ~[aws-java-sdk-core-1.11.792.jar:na]
+	at org.springframework.cloud.aws.context.support.env.AwsCloudEnvironmentCheckUtils.isRunningOnCloudEnvironment(AwsCloudEnvironmentCheckUtils.java:38) ~[spring-cloud-aws-context-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.cloud.aws.context.annotation.OnAwsCloudEnvironmentCondition.matches(OnAwsCloudEnvironmentCondition.java:38) ~[spring-cloud-aws-context-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.context.annotation.ConditionEvaluator.shouldSkip(ConditionEvaluator.java:108) ~[spring-context-5.2.9.RELEASE.jar:5.2.9.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader$TrackedConditionEvaluator.shouldSkip(ConfigurationClassBeanDefinitionReader.java:477) ~[spring-context-5.2.9.RELEASE.jar:5.2.9.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsForConfigurationClass(ConfigurationClassBeanDefinitionReader.java:131) ~[spring-context-5.2.9.RELEASE.jar:5.2.9.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitions(ConfigurationClassBeanDefinitionReader.java:120) ~[spring-context-5.2.9.RELEASE.jar:5.2.9.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:331) ~[spring-context-5.2.9.RELEASE.jar:5.2.9.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:236) ~[spring-context-5.2.9.RELEASE.jar:5.2.9.RELEASE]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:280) ~[spring-context-5.2.9.RELEASE.jar:5.2.9.RELEASE]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:96) ~[spring-context-5.2.9.RELEASE.jar:5.2.9.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:707) ~[spring-context-5.2.9.RELEASE.jar:5.2.9.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:533) ~[spring-context-5.2.9.RELEASE.jar:5.2.9.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143) ~[spring-boot-2.3.4.RELEASE.jar:2.3.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:758) ~[spring-boot-2.3.4.RELEASE.jar:2.3.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:750) ~[spring-boot-2.3.4.RELEASE.jar:2.3.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397) ~[spring-boot-2.3.4.RELEASE.jar:2.3.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315) ~[spring-boot-2.3.4.RELEASE.jar:2.3.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1237) ~[spring-boot-2.3.4.RELEASE.jar:2.3.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226) ~[spring-boot-2.3.4.RELEASE.jar:2.3.4.RELEASE]
+	at com.researchproject.GeneticEncryptionApplication.main(GeneticEncryptionApplication.java:70) ~[classes/:na]
+Caused by: java.net.SocketException: Network is unreachable: no further information
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:589) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:597) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:648) ~[na:na]
+	at java.base/sun.net.NetworkClient.doConnect(NetworkClient.java:177) ~[na:na]
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:474) ~[na:na]
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:569) ~[na:na]
+	at java.base/sun.net.www.http.HttpClient.<init>(HttpClient.java:242) ~[na:na]
+	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:341) ~[na:na]
+	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:362) ~[na:na]
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:1261) ~[na:na]
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1239) ~[na:na]
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1082) ~[na:na]
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:1016) ~[na:na]
+	at com.amazonaws.internal.ConnectionUtils.connectToEndpoint(ConnectionUtils.java:52) ~[aws-java-sdk-core-1.11.792.jar:na]
+	at com.amazonaws.internal.EC2ResourceFetcher.doReadResource(EC2ResourceFetcher.java:80) ~[aws-java-sdk-core-1.11.792.jar:na]
+	... 25 common frames omitted
+
+2020-11-28 23:06:05.079  WARN 17080 --- [main] com.amazonaws.util.EC2MetadataUtils      : Unable to retrieve the requested metadata (/latest/meta-data/instance-id). Failed to connect to service endpoint: 
+
+com.amazonaws.SdkClientException: Failed to connect to service endpoint: 
+	at com.amazonaws.internal.EC2ResourceFetcher.doReadResource(EC2ResourceFetcher.java:100) ~[aws-java-sdk-core-1.11.792.jar:na]
+	at com.amazonaws.internal.InstanceMetadataServiceResourceFetcher.getToken(InstanceMetadataServiceResourceFetcher.java:91) ~[aws-java-sdk-core-1.11.792.jar:na]
+	at com.amazonaws.internal.InstanceMetadataServiceResourceFetcher.readResource(InstanceMetadataServiceResourceFetcher.java:69) ~[aws-java-sdk-core-1.11.792.jar:na]
+	at com.amazonaws.internal.EC2ResourceFetcher.readResource(EC2ResourceFetcher.java:66) ~[aws-java-sdk-core-1.11.792.jar:na]
+	at com.amazonaws.util.EC2MetadataUtils.getItems(EC2MetadataUtils.java:402) ~[aws-java-sdk-core-1.11.792.jar:na]
+	at com.amazonaws.util.EC2MetadataUtils.getData(EC2MetadataUtils.java:371) ~[aws-java-sdk-core-1.11.792.jar:na]
+	at org.springframework.cloud.aws.context.support.env.AwsCloudEnvironmentCheckUtils.isRunningOnCloudEnvironment(AwsCloudEnvironmentCheckUtils.java:38) ~[spring-cloud-aws-context-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.cloud.aws.context.annotation.OnAwsCloudEnvironmentCondition.matches(OnAwsCloudEnvironmentCondition.java:38) ~[spring-cloud-aws-context-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.context.annotation.ConditionEvaluator.shouldSkip(ConditionEvaluator.java:108) ~[spring-context-5.2.9.RELEASE.jar:5.2.9.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader$TrackedConditionEvaluator.shouldSkip(ConfigurationClassBeanDefinitionReader.java:477) ~[spring-context-5.2.9.RELEASE.jar:5.2.9.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsForConfigurationClass(ConfigurationClassBeanDefinitionReader.java:131) ~[spring-context-5.2.9.RELEASE.jar:5.2.9.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitions(ConfigurationClassBeanDefinitionReader.java:120) ~[spring-context-5.2.9.RELEASE.jar:5.2.9.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:331) ~[spring-context-5.2.9.RELEASE.jar:5.2.9.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:236) ~[spring-context-5.2.9.RELEASE.jar:5.2.9.RELEASE]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:280) ~[spring-context-5.2.9.RELEASE.jar:5.2.9.RELEASE]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:96) ~[spring-context-5.2.9.RELEASE.jar:5.2.9.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:707) ~[spring-context-5.2.9.RELEASE.jar:5.2.9.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:533) ~[spring-context-5.2.9.RELEASE.jar:5.2.9.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143) ~[spring-boot-2.3.4.RELEASE.jar:2.3.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:758) ~[spring-boot-2.3.4.RELEASE.jar:2.3.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:750) ~[spring-boot-2.3.4.RELEASE.jar:2.3.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397) ~[spring-boot-2.3.4.RELEASE.jar:2.3.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315) ~[spring-boot-2.3.4.RELEASE.jar:2.3.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1237) ~[spring-boot-2.3.4.RELEASE.jar:2.3.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226) ~[spring-boot-2.3.4.RELEASE.jar:2.3.4.RELEASE]
+	at com.researchproject.GeneticEncryptionApplication.main(GeneticEncryptionApplication.java:70) ~[classes/:na]
+Caused by: java.net.SocketException: Network is unreachable: no further information
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:589) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:597) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:648) ~[na:na]
+	at java.base/sun.net.NetworkClient.doConnect(NetworkClient.java:177) ~[na:na]
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:474) ~[na:na]
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:569) ~[na:na]
+	at java.base/sun.net.www.http.HttpClient.<init>(HttpClient.java:242) ~[na:na]
+	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:341) ~[na:na]
+	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:362) ~[na:na]
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:1261) ~[na:na]
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1239) ~[na:na]
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1082) ~[na:na]
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:1016) ~[na:na]
+	at com.amazonaws.internal.ConnectionUtils.connectToEndpoint(ConnectionUtils.java:52) ~[aws-java-sdk-core-1.11.792.jar:na]
+	at com.amazonaws.internal.EC2ResourceFetcher.doReadResource(EC2ResourceFetcher.java:80) ~[aws-java-sdk-core-1.11.792.jar:na]
+	... 25 common frames omitted
+
+2020-11-28 23:06:05.188  INFO 17080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#38eb0f4d' of type [com.amazonaws.auth.BasicAWSCredentials] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-11-28 23:06:05.188  INFO 17080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#1716e8c5' of type [com.amazonaws.auth.AWSStaticCredentialsProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-11-28 23:06:05.194  INFO 17080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#1687eb01' of type [com.amazonaws.auth.profile.ProfileCredentialsProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-11-28 23:06:05.196  INFO 17080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'credentialsProvider' of type [org.springframework.cloud.aws.core.credentials.CredentialsProviderFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-11-28 23:06:05.196  INFO 17080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'credentialsProvider' of type [com.amazonaws.auth.AWSCredentialsProviderChain] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-11-28 23:06:05.407  INFO 17080 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-11-28 23:06:05.413  INFO 17080 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-11-28 23:06:05.414  INFO 17080 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-11-28 23:06:05.515  INFO 17080 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-11-28 23:06:05.516  INFO 17080 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1013 ms
+2020-11-28 23:06:05.630  INFO 17080 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-28 23:06:05.660  INFO 17080 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-11-28 23:06:05.695  INFO 17080 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-28 23:06:05.737  WARN 17080 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-11-28 23:06:05.771  INFO 17080 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-28 23:06:05.850  INFO 17080 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-11-28 23:06:06.092  INFO 17080 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-11-28 23:06:06.109  INFO 17080 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2020-11-28 23:06:06.356  INFO 17080 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-11-28 23:06:06.357  INFO 17080 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2020-11-28 23:06:06.897  INFO 17080 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-11-28 23:06:06.902  INFO 17080 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-28 23:06:07.019  INFO 17080 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2020-11-28 23:06:07.025  INFO 17080 --- [main] c.r.GeneticEncryptionApplication         : Started GeneticEncryptionApplication in 2.807 seconds (JVM running for 3.505)
+2020-11-28 23:06:27.577  INFO 17080 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-11-28 23:06:27.577  INFO 17080 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-11-28 23:06:27.587  INFO 17080 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
+2020-11-28 23:06:27.661  INFO 17080 --- [http-nio-8080-exec-1] c.r.services.DecryptionService           : Tree Traversed : [9904, 10308, 10103, 10506, 11007, 10705, 10402, 6701, null, 10201, 11102, 11403, null, 10303, 10801, 11102, null]
+2020-11-28 23:06:27.662  INFO 17080 --- [http-nio-8080-exec-1] c.r.services.DecryptionService           : Shannon Entropy Value of Tree Traversed Data is : 39.12079984963241
+2020-11-28 23:06:27.663  INFO 17080 --- [http-nio-8080-exec-1] c.r.services.DecryptionService           : Shannon Entropy Probability Value of Tree Traversed Data is : 0.008771929824561403
+2020-11-28 23:06:27.897  INFO 17080 --- [http-nio-8080-exec-1] c.r.services.DecryptionService           : Genetic Encryption = 1 0 1 0 0 0 0 0 1 1 0 0 0 0 1 0 0 1 1 0 1 1 0 0 0 1 0 0 1 0 1 0 0 1 0 1 1 1 0 1 1 1 1 0 0 1 1 1 0 0 0 0 1 0 1 0 1 0 1 0 0 1 1 1 1 1 1 1 1 1 1 0 1 0 1 0 1 1 0 1 0 0 0 1 0 1 1 0 1 0 0 0 1 0 0 0 1 0 1 0 1 0 0 0 1 0 1 0 1 1 0 1 1 0 0 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 1 0 0 1 1 0 1 1 0 0 1 1 0 1 1 1 1 0 1 0 1 0 1 1 0 0 0 0 1 0 1 1 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 0 1 0 1 1 0 0 1 1 0 0 0 1 1 0 1 0 1 0 0 1 0 1 1 1 1 0
+2020-11-28 23:06:27.898  INFO 17080 --- [http-nio-8080-exec-1] c.r.services.DecryptionService           : Shannon Entropy Value of Genetic Encrypted Data is : 223.61930193365203
+2020-11-28 23:06:27.900  INFO 17080 --- [http-nio-8080-exec-1] c.r.services.DecryptionService           : Shannon Entropy Probability Value of Genetic Encrypted Data is : 0.27069351230425054
+2020-11-28 23:06:28.485  INFO 17080 --- [http-nio-8080-exec-1] c.r.services.DecryptionService           : AES : +pi1wJochIfBmktppJ3U/jJuHZ0eDMj5W/6yae4wu39WotZQwBLpdGfIDTNBVPMxP0ami9cY2RJNGwe7eg5PlW9Yaq1SZI1jUPrQGGRMJZyM1fHAFLZqvFAFOW6S2tz6Zc/G82nh4DfmmdWUZO2reHgnMwNDk4YhsKD2n9cFLb7mh5AXDGeqH1YKU/wCATDSGG1hH2KlPZqprBQtQZisDwWKp0jr/VjEMgwnz0BpHFJJrHDT1zx1MTfQGc/muvJfDpzBBiwvqg2rMBBkhMgj6/rS5vEOLePD/4kNZRHE81mmBJvWqB7SxNogguxIsbXjsDbMAYbGcZWNQXde03dSmif9fxnp1olx5IvQcs/CPDE2kWkKtaKwrx2ai32/hIXmUGcz4d9ucWgp8/kzL2t551/RTr6RSNXBcV5hN/rUuQScPA5j6zwiKFse5i7UL0NPxQf0bcsww5M5T8da8tiXnZs9v9BC6hKCDAAGf6KpaNKzvetZZEGjTJ8D3h6d+P8neZMFh/evm5ZNAApJE9n4Tjau0UEMKQSBNGkXrZ3atLrj7sunQKEjCuyL9Lw8Qqu640jbGEVSQQ8tr3/581StbQ==
+2020-11-28 23:06:28.486  INFO 17080 --- [http-nio-8080-exec-1] c.r.services.DecryptionService           : Shannon Entropy Value of AES Encrypted Data is : 60.68219317139582
+2020-11-28 23:06:28.487  INFO 17080 --- [http-nio-8080-exec-1] c.r.services.DecryptionService           : Shannon Entropy Probability Value of AES Encrypted Data is : 0.0033333333333333335
+2020-11-28 23:07:19.407  INFO 17080 --- [RMI TCP Connection(6)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2020-11-28 23:07:19.608  INFO 17080 --- [RMI TCP Connection(6)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-11-28 23:07:19.615  INFO 17080 --- [RMI TCP Connection(6)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-11-28 23:07:19.617  INFO 17080 --- [RMI TCP Connection(6)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-11-28 23:07:19.635  INFO 17080 --- [RMI TCP Connection(6)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

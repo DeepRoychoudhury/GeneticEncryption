@@ -10,6 +10,7 @@ import com.researchproject.algorithm.AESDecryption;
 import com.researchproject.algorithm.AESEncryption;
 import com.researchproject.algorithm.BinaryShiftingEncryption;
 import com.researchproject.algorithm.GeneticEncryptionAlgorithm;
+import com.researchproject.algorithm.ShannonEntropy;
 import com.researchproject.model.Encrypt;
 import com.researchproject.model.FilesTable;
 import com.researchproject.repository.AzureBlobAdapter;
@@ -31,6 +32,7 @@ public class EncryptionService {
 	@Autowired
 	AzureBlobAdapter azureRepo;
 	
+	ShannonEntropy shannonEntropy = new ShannonEntropy();
 	EncryptionRepository encrepo = new EncryptionRepository();	
 	BinaryShiftingEncryption bse = new BinaryShiftingEncryption();	
 	GeneticEncryptionAlgorithm gea = new GeneticEncryptionAlgorithm();
@@ -42,10 +44,18 @@ public class EncryptionService {
 		
 		List<Integer> treeTraversed = bse.treeList(encrypt.getData());
 		System.out.println("Tree Traversed : "+treeTraversed);
+		System.out.println("Shannon Entropy Value of Tree Traversed Data is : " +shannonEntropy.calculationsForEntropy(treeTraversed.toString()).get(0));
+		System.out.println("Shannon Entropy Probability Value of Tree Traversed Data is : " +shannonEntropy.calculationsForEntropy(treeTraversed.toString()).get(1));
+		
 		String geneticEncryption = gea.geneticEncryption(treeTraversed, encrypt.getUser_name(), encrypt.getGroup_name()); 
 		System.out.println("Genetic Encryption = "+geneticEncryption);
+		System.out.println("Shannon Entropy Value of Genetic Encrypted Data is : " +shannonEntropy.calculationsForEntropy(geneticEncryption).get(0));
+		System.out.println("Shannon Entropy Probability Value of Genetic Encrypted Data is : " +shannonEntropy.calculationsForEntropy(geneticEncryption).get(1));
+		
 		String AESEncrypted = aes.encrypt(geneticEncryption,encrypt.getGroup_name(),encrypt.getPassword());
 		System.out.println("AES : "+AESEncrypted);
+		System.out.println("Shannon Entropy Value of AES Encrypted Data is : " +shannonEntropy.calculationsForEntropy(AESEncrypted).get(0));
+		System.out.println("Shannon Entropy Probability Value of AES Encrypted Data is : " +shannonEntropy.calculationsForEntropy(AESEncrypted).get(1));
 		//outputEncryptedFile(AESEncrypted,encrypt.getUser_id(),encrypt.getGroup_id(),encrypt.getFileid());
 		
 		  boolean isDataEntered = enterData(encrepo.fetchGroupId(encrypt.getGroup_name()),encrepo.fetchDataOwnerId(encrypt.getUser_name()),encrypt.getFile_name()); 

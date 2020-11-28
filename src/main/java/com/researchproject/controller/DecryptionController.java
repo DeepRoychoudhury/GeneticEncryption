@@ -46,6 +46,13 @@ public class DecryptionController {
 		  //return new File(output); 
 		  return ResponseEntity.ok().contentType(MediaType.parseMediaType(MediaType.APPLICATION_OCTET_STREAM_VALUE)).header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" ).body(output);
 	  }
+	  
+	  @GetMapping(path="/data") 
+	  public ResponseEntity<Object> fetchingText(@RequestBody Decrypt decrypt) throws Exception { 
+		  String output = decryptData.decryptCypherText(decrypt, decrypt.getFile_name()); 
+		  //return new File(output); 
+		  return ResponseEntity.ok().contentType(MediaType.parseMediaType(MediaType.APPLICATION_OCTET_STREAM_VALUE)).header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" ).body(output);
+	  }
 	
 	  @GetMapping("/downloadFile")
 	      public ResponseEntity<Object> downloadFile(@RequestBody Decrypt decrypt,HttpServletRequest request) {

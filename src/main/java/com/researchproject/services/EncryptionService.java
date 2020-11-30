@@ -1,6 +1,7 @@
 package com.researchproject.services;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.LoggerFactory;
@@ -32,6 +33,8 @@ public class EncryptionService {
 		
 	@Autowired
 	AzureBlobAdapter azureRepo;
+
+	List<String> returnValues = new ArrayList<String>();
 	
 	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(DecryptionService.class);
 
@@ -43,28 +46,28 @@ public class EncryptionService {
 	AESDecryption aesd = new AESDecryption();
 	
 	//Using Template Design Pattern to Encrypt the data
-	public Encrypt encryptTheData(Encrypt encrypt) throws Exception {
-		
+	public List<String> encryptTheData(Encrypt encrypt) throws Exception {
+		returnValues.clear();
 		List<Integer> treeTraversed = bse.treeList(encrypt.getData());
-		System.out.println("Tree Traversed : "+treeTraversed);
-		System.out.println("Shannon Entropy Value of Tree Traversed Data is : " +shannonEntropy.calculationsForEntropy(treeTraversed.toString()).get(0));
-		System.out.println("Shannon Entropy Probability Value of Tree Traversed Data is : " +shannonEntropy.calculationsForEntropy(treeTraversed.toString()).get(1));
+		returnValues.add("Tree Traversed : "+treeTraversed);
+		returnValues.add("Shannon Entropy Value of Tree Traversed Data is : " +shannonEntropy.calculationsForEntropy(treeTraversed.toString()).get(0));
+		returnValues.add("Shannon Entropy Probability Value of Tree Traversed Data is : " +shannonEntropy.calculationsForEntropy(treeTraversed.toString()).get(1));
 		logger.info("Tree Traversed : "+treeTraversed);
 		logger.info("Shannon Entropy Value of Tree Traversed Data is : " +shannonEntropy.calculationsForEntropy(treeTraversed.toString()).get(0));
 		logger.info("Shannon Entropy Probability Value of Tree Traversed Data is : " +shannonEntropy.calculationsForEntropy(treeTraversed.toString()).get(1));
 		
 		String geneticEncryption = gea.geneticEncryption(treeTraversed, encrypt.getUser_name(), encrypt.getGroup_name()); 
-		System.out.println("Genetic Encryption = "+geneticEncryption);
-		System.out.println("Shannon Entropy Value of Genetic Encrypted Data is : " +shannonEntropy.calculationsForEntropy(geneticEncryption).get(0));
-		System.out.println("Shannon Entropy Probability Value of Genetic Encrypted Data is : " +shannonEntropy.calculationsForEntropy(geneticEncryption).get(1));
+		returnValues.add("Genetic Encryption = "+geneticEncryption);
+		returnValues.add("Shannon Entropy Value of Genetic Encrypted Data is : " +shannonEntropy.calculationsForEntropy(geneticEncryption).get(0));
+		returnValues.add("Shannon Entropy Probability Value of Genetic Encrypted Data is : " +shannonEntropy.calculationsForEntropy(geneticEncryption).get(1));
 		logger.info("Genetic Encryption = "+geneticEncryption);
 		logger.info("Shannon Entropy Value of Genetic Encrypted Data is : " +shannonEntropy.calculationsForEntropy(geneticEncryption).get(0));
 		logger.info("Shannon Entropy Probability Value of Genetic Encrypted Data is : " +shannonEntropy.calculationsForEntropy(geneticEncryption).get(1));
 		
 		String AESEncrypted = aes.encrypt(geneticEncryption,encrypt.getGroup_name(),encrypt.getPassword());
-		System.out.println("AES : "+AESEncrypted);
-		System.out.println("Shannon Entropy Value of AES Encrypted Data is : " +shannonEntropy.calculationsForEntropy(AESEncrypted).get(0));
-		System.out.println("Shannon Entropy Probability Value of AES Encrypted Data is : " +shannonEntropy.calculationsForEntropy(AESEncrypted).get(1));
+		returnValues.add("AES : "+AESEncrypted);
+		returnValues.add("Shannon Entropy Value of AES Encrypted Data is : " +shannonEntropy.calculationsForEntropy(AESEncrypted).get(0));
+		returnValues.add("Shannon Entropy Probability Value of AES Encrypted Data is : " +shannonEntropy.calculationsForEntropy(AESEncrypted).get(1));
 		logger.info("AES : "+AESEncrypted);
 		logger.info("Shannon Entropy Value of AES Encrypted Data is : " +shannonEntropy.calculationsForEntropy(AESEncrypted).get(0));
 		logger.info("Shannon Entropy Probability Value of AES Encrypted Data is : " +shannonEntropy.calculationsForEntropy(AESEncrypted).get(1));
@@ -76,11 +79,11 @@ public class EncryptionService {
 		  }
 		  else {
 			  logger.error("Record not saved in Files Database.");
-			  System.out.println("Record not saved in Files Database.");
+			  returnValues.add("Record not saved in Files Database.");
 		  }
 		//String AESDecryption = aesd.decrypt(AESEncrypted,"DataConsumer","DataOwner");
 		//System.out.println(AESDecryption);
-		return encrypt;
+		return returnValues;
 	}
 
 	private boolean enterData(int group_id, int user_id, String file_name) {
@@ -106,7 +109,7 @@ public class EncryptionService {
 		azureRepo.upload(AESOutput, file_name);
 		//awsS3repo.saveFileToS3(bucketName, AESOutput ,file_name+".txt");
 		
-		System.out.println("Encryption Successful");
+		returnValues.add("Encryption Successful");
 	}
 	
 }

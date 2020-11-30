@@ -1,5 +1,7 @@
 package com.researchproject.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +22,7 @@ public class EncryptionController {
 	
 	@PostMapping(path="/data")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Encrypt fetchText(@RequestBody Encrypt encrypt) throws Exception {
+	public List<String> fetchText(@RequestBody Encrypt encrypt) throws Exception {
 		return encryptData.encryptTheData(encrypt);
 	}
 }

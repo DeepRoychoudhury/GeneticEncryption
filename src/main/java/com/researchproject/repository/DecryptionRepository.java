@@ -17,7 +17,8 @@ public class DecryptionRepository {
 	
 	private Connection connect() throws ClassNotFoundException, SQLException {
 		
-		  String url = "jdbc:postgresql://localhost:5432/encdb"; 
+		  String url = "jdbc:postgresql://encdb.cpwytlyekgvv.us-east-1.rds.amazonaws.com/encdb";
+		  //String url = "jdbc:postgresql://localhost:5432/encdb"; 
 		  String user = "postgres"; 
 		  String password = "postgres";
 		  Class.forName("org.postgresql.Driver");

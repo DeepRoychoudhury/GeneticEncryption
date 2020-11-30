@@ -11,6 +11,7 @@ com\researchproject\model\Group.class
 com\researchproject\model\Decrypt.class
 com\researchproject\repository\FilesRepository.class
 com\researchproject\repository\EncryptionRepository.class
+com\researchproject\algorithm\ShannonEntropy.class
 com\researchproject\algorithm\BinaryShiftingDecryption.class
 com\researchproject\services\UsersService.class
 com\researchproject\algorithm\TreeNode.class

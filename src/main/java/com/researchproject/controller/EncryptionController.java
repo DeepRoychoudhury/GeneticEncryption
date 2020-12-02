@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,5 +25,10 @@ public class EncryptionController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public List<String> fetchText(@RequestBody Encrypt encrypt) throws Exception {
 		return encryptData.encryptTheData(encrypt);
+	}
+	
+	@GetMapping(path="/")
+	public String getText() {
+		return "Link is working fine.";
 	}
 }

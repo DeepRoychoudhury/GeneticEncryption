@@ -162,7 +162,7 @@ public class GeneticEncryptionAlgorithm {
 	//Generate pseudo random number using multiplicative congruential generator(MCG) 
 	//or Lehmer RNG {X(n)=((X(i)*b) modulo m}, Time Complexity : O(1)
 	private int crossovernumber(List<Integer> values) {
-		return (((values.get(0) + values.get(1)) * values.get(2)) % 3);
+		return (((values.get(0) * values.get(1)) + values.get(2)) % 3);
 	}
 	
 	//Perform mutation of adjacent binary numbers for crossovers {2,1 and 0}, Time Complexity: Best Case: O(1), Worst Case: O(4)

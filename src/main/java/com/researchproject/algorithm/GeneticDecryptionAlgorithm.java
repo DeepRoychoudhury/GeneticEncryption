@@ -87,7 +87,7 @@ public class GeneticDecryptionAlgorithm {
 	//Generate pseudo random number using multiplicative congruential generator(MCG) 
 		//or Lehmer RNG {X(n)=((X(i)*b) modulo m}, Time Complexity : O(1)
 		private int crossovernumber(List<Integer> values) {
-			return (((values.get(0) + values.get(1)) * values.get(2)) % 3);
+			return (((values.get(0) * values.get(1)) + values.get(2)) % 3);
 		}
 		
 		//crossandmutation initializer

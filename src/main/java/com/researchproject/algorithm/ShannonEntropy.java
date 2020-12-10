@@ -1,19 +1,23 @@
 package com.researchproject.algorithm;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class ShannonEntropy {
 
-	public List<Double> calculationsForEntropy(String value){
-		List<Double> values = new ArrayList<Double>();
+
+	private DecimalFormat df = new DecimalFormat("0.0000");
+	
+	public List<String> calculationsForEntropy(String value){
+		List<String> values = new ArrayList<String>();
 		values = calculateShannonEntropy(value);
 		return values;
 	}
 	
-	private List<Double> calculateShannonEntropy(String value) {
-		List<Double> entropyAndFreq = new ArrayList<Double>();
+	private List<String> calculateShannonEntropy(String value) {
+		List<String> entropyAndFreq = new ArrayList<String>();
 		double entropy = 0.0, probability = 0.0;
 		HashMap<Character, Integer> frequencyCount = new HashMap<Character, Integer>();
 		frequencyCount = countFrequency(value);
@@ -23,8 +27,8 @@ public class ShannonEntropy {
 			probability = probabilityValue;
 			if(frequencyCount.get(value.charAt(i)) > 0) entropy -= probabilityValue * Math.log(probabilityValue) / Math.log(2);
 		}
-		entropyAndFreq.add(entropy);
-		entropyAndFreq.add(probability);
+		entropyAndFreq.add(df.format(entropy));
+		entropyAndFreq.add(df.format(probability));
 		return entropyAndFreq;
 	}
 	

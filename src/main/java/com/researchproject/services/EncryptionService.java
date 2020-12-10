@@ -46,7 +46,7 @@ public class EncryptionService {
 	AESDecryption aesd = new AESDecryption();
 	
 	//Using Template Design Pattern to Encrypt the data
-	public List<String> encryptTheData(Encrypt encrypt) throws Exception {
+	public List<String> encryptTheData(Encrypt encrypt) throws Exception { 
 		returnValues.clear();
 		List<Integer> treeTraversed = bse.treeList(encrypt.getData());
 		returnValues.add("Tree Traversed : "+treeTraversed);
@@ -73,14 +73,18 @@ public class EncryptionService {
 		logger.info("Shannon Entropy Probability Value of AES Encrypted Data is : " +shannonEntropy.calculationsForEntropy(AESEncrypted).get(1));
 		//outputEncryptedFile(AESEncrypted,encrypt.getUser_id(),encrypt.getGroup_id(),encrypt.getFileid());
 		
-		  boolean isDataEntered = enterData(encrepo.fetchGroupId(encrypt.getGroup_name()),encrepo.fetchDataOwnerId(encrypt.getUser_name()),encrypt.getFile_name()); 
-		  if(isDataEntered) {
-		  outputEncryptedFile(AESEncrypted,file.getFile_name()); 
-		  }
-		  else {
+		
+		  boolean isDataEntered =
+		  enterData(encrepo.fetchGroupId(encrypt.getGroup_name()),encrepo.
+		  fetchDataOwnerId(encrypt.getUser_name()),encrypt.getFile_name());
+		  if(isDataEntered) { 
+			  outputEncryptedFile(AESEncrypted,file.getFile_name()); 
+			  }
+		  else { 
 			  logger.error("Record not saved in Files Database.");
-			  returnValues.add("Record not saved in Files Database.");
+		  returnValues.add("Record not saved in Files Database."); 
 		  }
+		 
 		//String AESDecryption = aesd.decrypt(AESEncrypted,"DataConsumer","DataOwner");
 		//System.out.println(AESDecryption);
 		return returnValues;

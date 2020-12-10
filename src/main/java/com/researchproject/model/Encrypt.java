@@ -23,7 +23,15 @@ public class Encrypt {
 	private String group_name;	
 	@Column(name = "isDataOwner")
 	private String isDataOwner;
+	@Column(name = "isAdmin")
+	private String isAdmin;
 
+	public String getIsAdmin() {
+		return isAdmin;
+	}
+	public void setIsAdmin(String isAdmin) {
+		this.isAdmin = isAdmin;
+	}
 	public String getIsDataOwner() {
 		return isDataOwner;
 	}

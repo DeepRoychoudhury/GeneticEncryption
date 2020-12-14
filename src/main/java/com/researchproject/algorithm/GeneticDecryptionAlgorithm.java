@@ -31,9 +31,7 @@ public class GeneticDecryptionAlgorithm {
 		crossandMutation(splitByFourteen);
 		System.out.println("After Mutation Decryption : "+finalGeneticResult);
 		splitter(finalGeneticResult);
-		//System.out.println(splitByFourteen);
 		geneticDecrypted = convertToASCII(splitByFourteen).toString();
-		//System.out.println("After ASCII Conversion : "+geneticDecrypted);
 		return geneticDecrypted;
 	}
 	

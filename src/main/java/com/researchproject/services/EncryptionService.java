@@ -16,6 +16,7 @@ import com.researchproject.algorithm.ShannonEntropy;
 import com.researchproject.model.Encrypt;
 import com.researchproject.model.FilesTable;
 import com.researchproject.repository.AzureBlobAdapter;
+import com.researchproject.repository.DecryptionRepository;
 import com.researchproject.repository.EncryptionRepository;
 
 @Service
@@ -34,6 +35,9 @@ public class EncryptionService {
 	@Autowired
 	AzureBlobAdapter azureRepo;
 
+	@Autowired
+	DecryptionRepository decryptRepo;
+
 	List<String> returnValues = new ArrayList<String>();
 	
 	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(DecryptionService.class);
@@ -48,6 +52,10 @@ public class EncryptionService {
 	//Using Template Design Pattern to Encrypt the data
 	public List<String> encryptTheData(Encrypt encrypt) throws Exception { 
 		returnValues.clear();
+		boolean checkDataOwnerPwd = decryptRepo.CheckUserPassword(encrypt.getUser_name(), encrypt.getPassword());
+		boolean checkifDataOwner = decryptRepo.CheckIfDataOwner(encrypt.getUser_name());
+
+		if(checkDataOwnerPwd == true && checkifDataOwner == true){
 		List<Integer> treeTraversed = bse.treeList(encrypt.getData());
 		returnValues.add("Tree Traversed : "+treeTraversed);
 		returnValues.add("Shannon Entropy Value of Tree Traversed Data is : " +shannonEntropy.calculationsForEntropy(treeTraversed.toString()).get(0));
@@ -84,7 +92,10 @@ public class EncryptionService {
 			  logger.error("Record not saved in Files Database.");
 		  returnValues.add("Record not saved in Files Database."); 
 		  }
-		 
+		 }
+		 else {
+		 	returnValues.add("Unsuccessful Encryption due to wrong credentials");
+		 }
 		//String AESDecryption = aesd.decrypt(AESEncrypted,"DataConsumer","DataOwner");
 		//System.out.println(AESDecryption);
 		return returnValues;

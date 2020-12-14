@@ -9,13 +9,16 @@ com\researchproject\services\EncryptionService.class
 com\researchproject\repository\DecryptionRepository.class
 com\researchproject\model\Group.class
 com\researchproject\model\Decrypt.class
+com\researchproject\model\Users.class
 com\researchproject\repository\FilesRepository.class
+com\researchproject\services\UserRegistration.class
 com\researchproject\repository\EncryptionRepository.class
 com\researchproject\algorithm\ShannonEntropy.class
 com\researchproject\algorithm\BinaryShiftingDecryption.class
 com\researchproject\services\UsersService.class
 com\researchproject\algorithm\TreeNode.class
 com\researchproject\algorithm\GeneticDecryptionAlgorithm.class
+com\researchproject\controller\RegisterUser.class
 com\researchproject\repository\GroupRepository.class
 com\researchproject\services\FilesService.class
 com\researchproject\repository\UsersRepository.class

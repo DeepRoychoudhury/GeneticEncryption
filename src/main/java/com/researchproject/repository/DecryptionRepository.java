@@ -118,7 +118,7 @@ public class DecryptionRepository {
 		return isUserGroupcorrect;
 	}
 
-	private boolean CheckUserPassword(String user_name, String password) {
+	public boolean CheckUserPassword(String user_name, String password) {
 		boolean isUserPassCorrect = false;
 		int user_id=0;
 		String query = "select user_id from users where user_name='"+user_name+"' AND password='"+password+"'";
@@ -141,5 +141,30 @@ public class DecryptionRepository {
 			e.printStackTrace();
 		}
 		return isUserPassCorrect;
+	}
+
+	public boolean CheckIfDataOwner(String user_name) {
+		boolean isUserDataOwner = false;
+		String isDataOwner="N";
+		String query = "select isDataOwner from users where user_name='"+user_name+"'";
+		try {
+			connect();
+			PreparedStatement ps = con.prepareStatement(query);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				isDataOwner = rs.getString(1);
+			}
+			if(isDataOwner.equals("Y")) {
+				isUserDataOwner = true;
+			}
+			con.close();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return isUserDataOwner;
 	}
 }

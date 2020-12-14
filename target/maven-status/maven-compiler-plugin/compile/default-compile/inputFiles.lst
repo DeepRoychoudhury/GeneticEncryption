@@ -17,10 +17,13 @@ D:\Java\spring_workspace\GeneticEncryption\src\main\java\com\researchproject\alg
 D:\Java\spring_workspace\GeneticEncryption\src\main\java\com\researchproject\controller\DecryptionController.java
 D:\Java\spring_workspace\GeneticEncryption\src\main\java\com\researchproject\repository\DecryptionRepository.java
 D:\Java\spring_workspace\GeneticEncryption\src\main\java\com\researchproject\model\FilesTable.java
+D:\Java\spring_workspace\GeneticEncryption\src\main\java\com\researchproject\services\UserRegistration.java
 D:\Java\spring_workspace\GeneticEncryption\src\main\java\com\researchproject\services\EncryptionService.java
+D:\Java\spring_workspace\GeneticEncryption\src\main\java\com\researchproject\controller\RegisterUser.java
 D:\Java\spring_workspace\GeneticEncryption\src\main\java\com\researchproject\model\Encrypt.java
 D:\Java\spring_workspace\GeneticEncryption\src\main\java\com\researchproject\repository\EncryptionRepository.java
 D:\Java\spring_workspace\GeneticEncryption\src\main\java\com\researchproject\controller\EncryptionController.java
 D:\Java\spring_workspace\GeneticEncryption\src\main\java\com\researchproject\algorithm\ShannonEntropy.java
 D:\Java\spring_workspace\GeneticEncryption\src\main\java\com\researchproject\repository\AwsS3Repository.java
+D:\Java\spring_workspace\GeneticEncryption\src\main\java\com\researchproject\model\Users.java
 D:\Java\spring_workspace\GeneticEncryption\src\main\java\com\researchproject\model\Group.java

@@ -73,7 +73,7 @@ public class GeneticDecryptionAlgorithm {
 		List<Integer> values = new ArrayList<Integer>();
 		values.add(dataOwnerId);
 		values.add(dataConsumerId);
-		values.add(splittedbinary.length + 1);
+		values.add(splittedbinary.length);
 		System.out.println("Cross Over values : "+values.get(0)+""+values.get(1)+""+values.get(2));
 
 		cross = crossovernumber(values);

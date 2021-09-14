@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="GeneticEncryption" target="1.8" />
+      <module name="GeneticEncryption" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
